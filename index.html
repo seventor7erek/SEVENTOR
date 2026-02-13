@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEVENTOR — Luxury Entertainment & Events | Dubai</title>
+    <meta name="description" content="SEVENTOR is Dubai's premier luxury entertainment and events agency. We craft unforgettable experiences for five-star hotels, government entities, corporations, and VIP private clients.">
+    <meta name="keywords" content="Dubai entertainment, luxury events, event management, hotel entertainment, corporate events, VIP events, Dubai agency, SEVENTOR">
+    <meta name="author" content="SEVENTOR">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="SEVENTOR — Luxury Entertainment & Events | Dubai">
+    <meta property="og:description" content="Dubai's premier luxury entertainment and events agency. Where Vision Meets Grandeur.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://seventor.com">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ar_AE">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SEVENTOR — Luxury Entertainment & Events">
+    <meta name="twitter:description" content="Dubai's premier luxury entertainment and events agency.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Didact+Gothic&family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- Preloader -->
+<div class="preloader" id="pre">
+    <div class="preloader-brand">SEVENTOR</div>
+    <div class="preloader-accent"></div>
+</div>
+
+<!-- Sparkles -->
+<div class="sparkles" id="sparkles"></div>
+
+<!-- Language Toggle -->
+<div class="lang-toggle">
+    <button class="lang-opt on" onclick="setLang('en')" data-l="en" aria-label="Switch to English">EN</button>
+    <button class="lang-opt" onclick="setLang('ar')" data-l="ar" aria-label="التبديل إلى العربية">عربي</button>
+</div>
+
+<!-- Mobile Overlay -->
+<div class="mob-overlay" id="mob" role="dialog" aria-label="Navigation menu">
+    <button class="mob-close" onclick="closeMob()" aria-label="Close menu">✕</button>
+    <nav class="mob-nav">
+        <a href="#about" onclick="closeMob()" data-en="About" data-ar="من نحن">About</a>
+        <a href="#services" onclick="closeMob()" data-en="Services" data-ar="خدماتنا">Services</a>
+        <a href="#artists" onclick="closeMob()" data-en="Artists" data-ar="فنانونا">Artists</a>
+        <a href="#showcase" onclick="closeMob()" data-en="Portfolio" data-ar="أعمالنا">Portfolio</a>
+        <a href="#why" onclick="closeMob()" data-en="Why Us" data-ar="لماذا نحن">Why Us</a>
+        <a href="#contact" onclick="closeMob()" data-en="Contact" data-ar="تواصل">Contact</a>
+    </nav>
+</div>
+
+<!-- Header -->
+<header class="header" id="hdr">
+    <a href="#" class="logo">SEVENTOR</a>
+    <ul class="nav-list">
+        <li><a href="#about" data-en="About" data-ar="من نحن">About</a></li>
+        <li><a href="#services" data-en="Services" data-ar="خدماتنا">Services</a></li>
+        <li><a href="#artists" data-en="Artists" data-ar="فنانونا">Artists</a></li>
+        <li><a href="#showcase" data-en="Portfolio" data-ar="أعمالنا">Portfolio</a></li>
+        <li><a href="#why" data-en="Why Us" data-ar="لماذا نحن">Why Us</a></li>
+        <li><a href="#contact" data-en="Contact" data-ar="تواصل">Contact</a></li>
+    </ul>
+    <button class="burger" onclick="openMob()" aria-label="Open navigation menu">
+        <i></i><i></i><i></i>
+    </button>
+</header>
+
+<!-- ==================== HERO ==================== -->
+<section class="hero">
+    <div class="hero-atm"></div>
+    <div class="hero-lat"></div>
+    <div class="hero-lt"></div>
+    <div class="hero-lb"></div>
+    <div class="hero-in">
+        <p class="hero-over" data-en="Dubai's Premier Entertainment Agency" data-ar="وكالة الترفيه الأولى في دبي">Dubai's Premier Entertainment Agency</p>
+        <h1 class="hero-title" data-en="SEVENTOR" data-ar="SEVENTOR">SEVENTOR</h1>
+        <p class="hero-tag" data-en="Where Vision Meets Grandeur" data-ar="حيث تلتقي الرؤية بالفخامة">Where Vision Meets Grandeur</p>
+        <a href="#contact" class="hero-cta" data-en="Request a Consultation" data-ar="اطلب استشارة">Request a Consultation</a>
+    </div>
+    <div class="hero-sh">
+        <span data-en="Discover" data-ar="اكتشف">Discover</span>
+        <div class="scroll-bar"></div>
+    </div>
+</section>
+
+<!-- ==================== ABOUT ==================== -->
+<section class="section-pad about-bg" id="about">
+    <div class="reveal">
+        <p class="section-overline" data-en="Who We Are" data-ar="من نحن">Who We Are</p>
+        <h2 class="section-title" data-en="The Art of Extraordinary" data-ar="فنّ صناعة الاستثنائي">The Art of Extraordinary</h2>
+        <div class="ornament"><div class="bar"></div><div class="gem"></div><div class="bar"></div></div>
+        <p class="about-prose" data-en="SEVENTOR is a Dubai-based luxury entertainment and events agency that transforms visions into unforgettable experiences. We collaborate with five-star hotels, government entities, leading corporations, and discerning private clients to craft events that transcend expectations. Every detail is curated with precision, every moment is crafted with intention, every experience is designed to be extraordinary." data-ar="سڤنتور وكالة ترفيه وإدارة فعاليات فاخرة مقرّها دبي، نحوّل الرؤى إلى تجارب لا تُنسى. نتعاون مع فنادق الخمس نجوم والجهات الحكومية والشركات الرائدة والعملاء المميزين لصناعة فعاليات تتجاوز كل التوقعات. كل تفصيلة مدروسة بعناية، كل لحظة مصنوعة بإتقان، وكل تجربة مصمّمة لتكون استثنائية.">SEVENTOR is a Dubai-based luxury entertainment and events agency that transforms visions into unforgettable experiences. We collaborate with five-star hotels, government entities, leading corporations, and discerning private clients to craft events that transcend expectations. Every detail is curated with precision, every moment is crafted with intention, every experience is designed to be extraordinary.</p>
+    </div>
+</section>
+
+<!-- ==================== SERVICES ==================== -->
+<section class="section-pad svc-bg" id="services">
+    <div class="reveal">
+        <p class="section-overline" data-en="Our Services" data-ar="خدماتنا">Our Services</p>
+        <h2 class="section-title" data-en="Crafted for Excellence" data-ar="صُنعت للتميّز">Crafted for Excellence</h2>
+        <div class="ornament"><div class="bar"></div><div class="gem"></div><div class="bar"></div></div>
+    </div>
+    <div class="service-grid">
+        <div class="service-card reveal">
+            <span class="service-icon">🏨</span>
+            <h3 class="service-name" data-en="Hotel Entertainment" data-ar="ترفيه الفنادق">Hotel Entertainment</h3>
+            <p class="service-text" data-en="Bespoke entertainment programs for luxury hotels and resorts. Live performances, themed nights, and immersive guest experiences that elevate every stay." data-ar="برامج ترفيهية مصمّمة خصيصاً للفنادق والمنتجعات الفاخرة. عروض حية، ليالٍ مواضيعية، وتجارب تفاعلية ترتقي بإقامة كل نزيل.">Bespoke entertainment programs for luxury hotels and resorts. Live performances, themed nights, and immersive guest experiences that elevate every stay.</p>
+        </div>
+        <div class="service-card reveal">
+            <span class="service-icon">🏛️</span>
+            <h3 class="service-name" data-en="Government & Official" data-ar="الفعاليات الحكومية">Government & Official</h3>
+            <p class="service-text" data-en="Professional management for government ceremonies, national celebrations, diplomatic gatherings, and official functions executed to the highest protocol standards." data-ar="إدارة احترافية للاحتفالات الحكومية والمناسبات الوطنية والتجمعات الدبلوماسية والفعاليات الرسمية بأعلى معايير البروتوكول.">Professional management for government ceremonies, national celebrations, diplomatic gatherings, and official functions executed to the highest protocol standards.</p>
+        </div>
+        <div class="service-card reveal">
+            <span class="service-icon">💎</span>
+            <h3 class="service-name" data-en="Corporate Excellence" data-ar="فعاليات الشركات">Corporate Excellence</h3>
+            <p class="service-text" data-en="Product launches, gala dinners, conferences, brand activations, and team-building experiences meticulously crafted to amplify your brand's presence." data-ar="إطلاق منتجات، حفلات غالا، مؤتمرات، تنشيط علامات تجارية، وفعاليات بناء الفريق مصمّمة بإتقان لتعزيز حضور علامتكم.">Product launches, gala dinners, conferences, brand activations, and team-building experiences meticulously crafted to amplify your brand's presence.</p>
+        </div>
+        <div class="service-card reveal">
+            <span class="service-icon">✨</span>
+            <h3 class="service-name" data-en="Private & VIP" data-ar="الحفلات الخاصة">Private & VIP</h3>
+            <p class="service-text" data-en="Exclusive private celebrations, luxury weddings, milestone events, and VIP experiences designed with unwavering attention to every exquisite detail." data-ar="احتفالات خاصة حصرية، حفلات زفاف فاخرة، مناسبات مميزة، وتجارب VIP مصمّمة بعناية فائقة لكل تفصيلة راقية.">Exclusive private celebrations, luxury weddings, milestone events, and VIP experiences designed with unwavering attention to every exquisite detail.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== ARTISTS ==================== -->
+<section class="section-pad artists-bg" id="artists">
+    <div class="reveal">
+        <p class="section-overline" data-en="Our Artists" data-ar="فنانونا">Our Artists</p>
+        <h2 class="section-title" data-en="World-Class Talent" data-ar="مواهب عالمية المستوى">World-Class Talent</h2>
+        <div class="ornament"><div class="bar"></div><div class="gem"></div><div class="bar"></div></div>
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="cat-tabs reveal">
+        <button class="cat-tab active" onclick="filterArtists('all', this)" data-en="All" data-ar="الكل">All</button>
+        <button class="cat-tab" onclick="filterArtists('oud', this)" data-en="🪕 Oud" data-ar="🪕 عود">🪕 Oud</button>
+        <button class="cat-tab" onclick="filterArtists('piano', this)" data-en="🎹 Piano" data-ar="🎹 بيانو">🎹 Piano</button>
+        <button class="cat-tab" onclick="filterArtists('percussion', this)" data-en="🥁 Percussion" data-ar="🥁 إيقاع">🥁 Percussion</button>
+        <button class="cat-tab" onclick="filterArtists('violin', this)" data-en="🎻 Violin" data-ar="🎻 كمان">🎻 Violin</button>
+        <button class="cat-tab" onclick="filterArtists('saxophone', this)" data-en="🎷 Saxophone" data-ar="🎷 ساكسفون">🎷 Saxophone</button>
+        <button class="cat-tab" onclick="filterArtists('vocalist', this)" data-en="🎤 Vocalist" data-ar="🎤 مغنّي">🎤 Vocalist</button>
+        <button class="cat-tab" onclick="filterArtists('dj', this)" data-en="🎧 DJ" data-ar="🎧 دي جي">🎧 DJ</button>
+    </div>
+
+    <!-- Artist Grid -->
+    <div class="artist-grid">
+
+        <!-- Oud Players -->
+        <div class="artist-card reveal visible" data-category="oud">
+            <div class="artist-photo"><div class="artist-photo-icon">🪕</div></div>
+            <div class="artist-info">
+                <h3 class="artist-name" data-en="Omar Al-Farsi" data-ar="عمر الفارسي">Omar Al-Farsi</h3>
+                <p class="artist-role" data-en="Oud Virtuoso" data-ar="عازف عود">Oud Virtuoso</p>
+                <button class="book-btn" onclick="openBooking('Omar Al-Farsi','عمر الفارسي')" data-en="Book Now" data-ar="احجز الآن">Book Now</button>
+            </div>
+        </div>
+
+        <div class="artist-card reveal visible" data-category="oud">
+            <div class="artist-photo"><div class="artist-photo-icon">🪕</div></div>
+            <div class="artist-info">
+                <h3 class="artist-name" data-en="Khalid Mansoor" data-ar="خالد منصور">Khalid Mansoor</h3>
+                <p class="artist-role" data-en="Oud Master" data-ar="أستاذ عود">Oud Master</p>
+                <button class="book-btn" onclick="openBooking('Khalid Mansoor','خالد منصور')" data-en="Book Now" data-ar="احجز الآن">Book Now</button>
+            </div>
+        </div>
+
+        <div class="artist-card reveal visible" data-category="oud">
+            <div class="artist-photo"><div class="artist-photo-icon">🪕</div></div>
+            <div class="artist-info">
+                <h3 class="artist-name" data-en="Youssef Nabil" data-ar="يوسف نبيل">Youssef Nabil</h3>
+                <p class="artist-role" data-en="Oriental Oud" data-ar="عود شرقي">Oriental Oud</p>
+                <button class="book-btn" onclick="openBooking('Youssef Nabil','يوسف نبيل')" data-en="Book Now" data-ar="احجز الآن">Book Now</button>
+            </div>
+        </div>
+
+        <!-- Piano -->
+        <div class="artist-card reveal visible" data-category="piano">
+            <div class="artist-photo"><div class="artist-photo-icon">🎹</div></div>
+            <div class="artist-info">
+                <h3 class="artist-name" data-en="Layla Sarkis" data-ar="ليلى سركيس">Layla Sarkis</h3>
+                <p class="artist-role" data-en="Concert Pianist" data-ar="عازفة بيانو">Concert Pianist</p>
+                <button class="book-btn" onclick="openBooking('Layla Sarkis','ليلى سركيس')" data-en="Book Now" data-ar="احجز الآن">Book Now</button>
+            </div>
+        </div>
+
+        <div class="artist-card reveal visible" data-category="piano">
+            <div class="artist-photo"><div class="artist-photo-icon">🎹</div></div>
+            <div class="artist-info">
+                <h3 class="artist-name" data-en="Adrian Voss" data-ar="أدريان فوس">Adrian Voss</h3>
+                <p class="artist-role" data-en="Jazz & Classical Piano" data-ar="بيانو جاز وكلاسيك">Jazz & Classical Piano</p>
+                <button class="book-btn" onclick="openBooking('Adrian Voss','أدريان فوس')" data-en="Book Now" data-ar="احجز الآن">Book Now</button>
+            </div>
+        </div>
+
+        <!-- Percussion -->
+        <div class="artist-card reveal visible" data-category="percussion">
+            <div class="artist-photo"><div class="artist-photo-icon">🥁</div></div>
+            <div class="artist-info">
+                <h3 class="artist-name" data-en="Rami Haddad" data-ar="رامي حدّاد">Rami Haddad</h3>
+                <p class="artist-role" data-en="Tabla & Darbuka" data-ar="طبلة ودربكة">Tabla & Darbuka</p>
+                <button class="book-btn" onclick="openBooking('Rami Haddad','رامي حدّاد')" data-en="Book Now" data-ar="احجز الآن">Book Now</button>
+            </div>
+        </div>
+
+        <div class="artist-card reveal visible" data-category="percussion">
+            <div class="artist-photo"><div class="artist-photo-icon">🥁</div></div>
+            <div class="artist-info">
+                <h3 class="artist-name" data-en="Nasser Al-Balushi" data-ar="ناصر البلوشي">Nasser Al-Balushi</h3>
+                <p class="artist-role" data-en="Percussion Ensemble" data-ar="فرقة إيقاعية">Percussion Ensemble</p>
+                <button class="book-btn" onclick="openBooking('Nasser Al-Balushi','ناصر البلوشي')" data-en="Book Now" data-ar="احجز الآن">Book Now</button>
+            </div>
+        </div>
+
+        <!-- Violin -->
+        <div class="artist-card reveal visible" data-category="violin">
+            <div class="artist-photo"><div class="artist-photo-icon">🎻</div></div>
+            <div class="artist-info">
+                <h3 class="artist-name" data-en="Elena Mirova" data-ar="إيلينا ميروفا">Elena Mirova</h3>
+                <p class="artist-role" data-en="Solo Violinist" data-ar="عازفة كمان منفردة">Solo Violinist</p>
+                <button class="book-btn" onclick="openBooking('Elena Mirova','إيلينا ميروفا')" data-en="Book Now" data-ar="احجز الآن">Book Now</button>
+            </div>
+        </div>
+
+        <div class="artist-card reveal visible" data-category="violin">
+            <div class="artist-photo"><div class="artist-photo-icon">🎻</div></div>
+            <div class="artist-info">
+                <h3 class="artist-name" data-en="Fares Khoury" data-ar="فارس خوري">Fares Khoury</h3>
+                <p class="artist-role" data-en="Oriental Violin" data-ar="كمان شرقي">Oriental Violin</p>
+                <button class="book-btn" onclick="openBooking('Fares Khoury','فارس خوري')" data-en="Book Now" data-ar="احجز الآن">Book Now</button>
+            </div>
+        </div>
+
+        <!-- Saxophone -->
+        <div class="artist-card reveal visible" data-category="saxophone">
+            <div class="artist-photo"><div class="artist-photo-icon">🎷</div></div>
+            <div class="artist-info">
+                <h3 class="artist-name" data-en="Marcus Laurent" data-ar="ماركوس لوران">Marcus Laurent</h3>
+                <p class="artist-role" data-en="Saxophone Performer" data-ar="عازف ساكسفون">Saxophone Performer</p>
+                <button class="book-btn" onclick="openBooking('Marcus Laurent','ماركوس لوران')" data-en="Book Now" data-ar="احجز الآن">Book Now</button>
+            </div>
+        </div>
+
+        <div class="artist-card reveal visible" data-category="saxophone">
+            <div class="artist-photo"><div class="artist-photo-icon">🎷</div></div>
+            <div class="artist-info">
+                <h3 class="artist-name" data-en="Samir Zayed" data-ar="سمير زايد">Samir Zayed</h3>
+                <p class="artist-role" data-en="Jazz Saxophone" data-ar="ساكسفون جاز">Jazz Saxophone</p>
+                <button class="book-btn" onclick="openBooking('Samir Zayed','سمير زايد')" data-en="Book Now" data-ar="احجز الآن">Book Now</button>
+            </div>
+        </div>
+
+        <!-- Vocalist -->
+        <div class="artist-card reveal visible" data-category="vocalist">
+            <div class="artist-photo"><div class="artist-photo-icon">🎤</div></div>
+            <div class="artist-info">
+                <h3 class="artist-name" data-en="Nadia Haroun" data-ar="نادية هارون">Nadia Haroun</h3>
+                <p class="artist-role" data-en="Arabic Vocalist" data-ar="مغنّية عربية">Arabic Vocalist</p>
+                <button class="book-btn" onclick="openBooking('Nadia Haroun','نادية هارون')" data-en="Book Now" data-ar="احجز الآن">Book Now</button>
+            </div>
+        </div>
+
+        <div class="artist-card reveal visible" data-category="vocalist">
+            <div class="artist-photo"><div class="artist-photo-icon">🎤</div></div>
+            <div class="artist-info">
+                <h3 class="artist-name" data-en="Daniel Cruz" data-ar="دانيال كروز">Daniel Cruz</h3>
+                <p class="artist-role" data-en="International Vocalist" data-ar="مغنّي عالمي">International Vocalist</p>
+                <button class="book-btn" onclick="openBooking('Daniel Cruz','دانيال كروز')" data-en="Book Now" data-ar="احجز الآن">Book Now</button>
+            </div>
+        </div>
+
+        <!-- DJ -->
+        <div class="artist-card reveal visible" data-category="dj">
+            <div class="artist-photo"><div class="artist-photo-icon">🎧</div></div>
+            <div class="artist-info">
+                <h3 class="artist-name" data-en="DJ Aether" data-ar="دي جي إيثر">DJ Aether</h3>
+                <p class="artist-role" data-en="Deep House & Lounge" data-ar="ديب هاوس ولاونج">Deep House & Lounge</p>
+                <button class="book-btn" onclick="openBooking('DJ Aether','دي جي إيثر')" data-en="Book Now" data-ar="احجز الآن">Book Now</button>
+            </div>
+        </div>
+
+        <div class="artist-card reveal visible" data-category="dj">
+            <div class="artist-photo"><div class="artist-photo-icon">🎧</div></div>
+            <div class="artist-info">
+                <h3 class="artist-name" data-en="DJ Noir" data-ar="دي جي نوار">DJ Noir</h3>
+                <p class="artist-role" data-en="Afro House & Beats" data-ar="أفرو هاوس وبيتس">Afro House & Beats</p>
+                <button class="book-btn" onclick="openBooking('DJ Noir','دي جي نوار')" data-en="Book Now" data-ar="احجز الآن">Book Now</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ==================== SHOWCASE ==================== -->
+<section class="section-pad showcase-bg" id="showcase">
+    <div class="reveal">
+        <p class="section-overline" data-en="Portfolio" data-ar="أعمالنا">Portfolio</p>
+        <h2 class="section-title" data-en="Moments We've Crafted" data-ar="لحظات صنعناها">Moments We've Crafted</h2>
+        <div class="ornament"><div class="bar"></div><div class="gem"></div><div class="bar"></div></div>
+    </div>
+    <div class="showcase-grid">
+        <div class="showcase-cell reveal">
+            <div class="showcase-placeholder">
+                <div class="showcase-placeholder-icon">◇</div>
+                <p class="showcase-placeholder-label" data-en="Coming Soon" data-ar="قريباً">Coming Soon</p>
+            </div>
+        </div>
+        <div class="showcase-cell reveal">
+            <div class="showcase-placeholder">
+                <div class="showcase-placeholder-icon">◇</div>
+                <p class="showcase-placeholder-label" data-en="Coming Soon" data-ar="قريباً">Coming Soon</p>
+            </div>
+        </div>
+        <div class="showcase-cell reveal">
+            <div class="showcase-placeholder">
+                <div class="showcase-placeholder-icon">◇</div>
+                <p class="showcase-placeholder-label" data-en="Coming Soon" data-ar="قريباً">Coming Soon</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== WHY US ==================== -->
+<section class="section-pad why-bg" id="why">
+    <div class="reveal">
+        <p class="section-overline" data-en="Why SEVENTOR" data-ar="لماذا سڤنتور">Why SEVENTOR</p>
+        <h2 class="section-title" data-en="Excellence is Our Standard" data-ar="التميّز معيارنا">Excellence is Our Standard</h2>
+        <div class="ornament"><div class="bar"></div><div class="gem"></div><div class="bar"></div></div>
+    </div>
+    <div class="stats reveal">
+        <div class="stat">
+            <div class="stat-num">100%</div>
+            <div class="stat-label" data-en="Commitment" data-ar="التزام">Commitment</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">24/7</div>
+            <div class="stat-label" data-en="Availability" data-ar="جاهزون دائماً">Availability</div>
+        </div>
+        <div class="stat">
+            <div class="stat-num">∞</div>
+            <div class="stat-label" data-en="Possibilities" data-ar="إمكانيات بلا حدود">Possibilities</div>
+        </div>
+    </div>
+    <div class="pills">
+        <div class="pill reveal">
+            <div class="pill-icon">♛</div>
+            <h4 class="pill-heading" data-en="Licensed & Certified" data-ar="مرخّصون ومعتمدون">Licensed & Certified</h4>
+            <p class="pill-desc" data-en="Fully licensed under Dubai's Department of Economy and Tourism with all required permits and certifications." data-ar="مرخّصون بالكامل من دائرة الاقتصاد والسياحة في دبي مع جميع التصاريح والشهادات المطلوبة.">Fully licensed under Dubai's Department of Economy and Tourism with all required permits and certifications.</p>
+        </div>
+        <div class="pill reveal">
+            <div class="pill-icon">◈</div>
+            <h4 class="pill-heading" data-en="Dubai Native" data-ar="من قلب دبي">Dubai Native</h4>
+            <p class="pill-desc" data-en="Deep understanding of the local market, cultural nuances, and regulatory landscape. We navigate every complexity with confidence." data-ar="فهم عميق للسوق المحلي والخصوصيات الثقافية والمتطلبات التنظيمية. نتعامل مع كل التعقيدات بثقة تامة.">Deep understanding of the local market, cultural nuances, and regulatory landscape. We navigate every complexity with confidence.</p>
+        </div>
+        <div class="pill reveal">
+            <div class="pill-icon">✧</div>
+            <h4 class="pill-heading" data-en="End-to-End" data-ar="من الألف إلى الياء">End-to-End</h4>
+            <p class="pill-desc" data-en="From concept to final curtain — venues, permits, talent, production, logistics, and every detail in between." data-ar="من الفكرة إلى لحظة الختام — الأماكن، التصاريح، المواهب، الإنتاج، اللوجستيات، وكل تفصيلة بينهما.">From concept to final curtain — venues, permits, talent, production, logistics, and every detail in between.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== CONTACT ==================== -->
+<section class="section-pad contact-bg" id="contact">
+    <div class="reveal">
+        <p class="section-overline" data-en="Get in Touch" data-ar="تواصل معنا">Get in Touch</p>
+        <h2 class="section-title" data-en="Let's Create Together" data-ar="لنبدع معاً">Let's Create Together</h2>
+        <div class="ornament"><div class="bar"></div><div class="gem"></div><div class="bar"></div></div>
+    </div>
+    <div class="contact-box reveal">
+        <form onsubmit="submitContactForm(event)">
+            <div class="field">
+                <label class="field-label" data-en="Full Name" data-ar="الاسم الكامل">Full Name</label>
+                <input type="text" class="field-input" required data-en-ph="Your name" data-ar-ph="اسمك الكامل" placeholder="Your name">
+            </div>
+            <div class="field">
+                <label class="field-label" data-en="Email" data-ar="البريد الإلكتروني">Email</label>
+                <input type="email" class="field-input" required data-en-ph="your@email.com" data-ar-ph="your@email.com" placeholder="your@email.com">
+            </div>
+            <div class="field">
+                <label class="field-label" data-en="Phone / WhatsApp" data-ar="الهاتف / واتساب">Phone / WhatsApp</label>
+                <input type="tel" class="field-input" data-en-ph="+971 XX XXX XXXX" data-ar-ph="+971 XX XXX XXXX" placeholder="+971 XX XXX XXXX">
+            </div>
+            <div class="field">
+                <label class="field-label" data-en="Event Type" data-ar="نوع الفعالية">Event Type</label>
+                <select class="field-select">
+                    <option value="" data-en="Select event type" data-ar="اختر نوع الفعالية">Select event type</option>
+                    <option value="hotel" data-en="Hotel Entertainment" data-ar="ترفيه فنادق">Hotel Entertainment</option>
+                    <option value="gov" data-en="Government Event" data-ar="فعالية حكومية">Government Event</option>
+                    <option value="corp" data-en="Corporate Event" data-ar="فعالية شركات">Corporate Event</option>
+                    <option value="priv" data-en="Private / VIP" data-ar="خاصة / VIP">Private / VIP</option>
+                    <option value="other" data-en="Other" data-ar="أخرى">Other</option>
+                </select>
+            </div>
+            <div class="field">
+                <label class="field-label" data-en="Your Vision" data-ar="أخبرنا عن رؤيتك">Your Vision</label>
+                <textarea class="field-textarea" data-en-ph="Tell us about your event vision..." data-ar-ph="صف لنا رؤيتك للفعالية..." placeholder="Tell us about your event vision..."></textarea>
+            </div>
+            <button type="submit" class="form-btn" data-en="Send Request" data-ar="أرسل الطلب">Send Request</button>
+        </form>
+        <div class="contact-details">
+            <div class="contact-detail-item">
+                <div class="contact-detail-label" data-en="WhatsApp" data-ar="واتساب">WhatsApp</div>
+                <div class="contact-detail-value"><a href="https://wa.me/971XXXXXXXXX">+971 XX XXX XXXX</a></div>
+            </div>
+            <div class="contact-detail-item">
+                <div class="contact-detail-label" data-en="Email" data-ar="الإيميل">Email</div>
+                <div class="contact-detail-value"><a href="mailto:info@seventor.com">info@seventor.com</a></div>
+            </div>
+            <div class="contact-detail-item">
+                <div class="contact-detail-label" data-en="Location" data-ar="الموقع">Location</div>
+                <div class="contact-detail-value" data-en="Dubai, UAE" data-ar="دبي، الإمارات">Dubai, UAE</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+    <div class="footer-brand">SEVENTOR</div>
+    <div class="footer-links">
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">TikTok</a>
+    </div>
+    <p class="footer-copy">© 2025 SEVENTOR. <span data-en="All Rights Reserved." data-ar="جميع الحقوق محفوظة.">All Rights Reserved.</span></p>
+</footer>
+
+<!-- ==================== BOOKING MODAL ==================== -->
+<div class="modal-overlay" id="bookingModal" role="dialog" aria-label="Book an artist">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeBooking()" aria-label="Close booking form">✕</button>
+        <h3 class="modal-title" data-en="Book This Artist" data-ar="احجز هذا الفنان">Book This Artist</h3>
+        <p class="modal-subtitle" data-en="Fill in your details and we'll get back to you within 24 hours." data-ar="املأ بياناتك وسنعود إليك خلال 24 ساعة.">Fill in your details and we'll get back to you within 24 hours.</p>
+
+        <div class="modal-artist-badge">
+            <span>🎭</span>
+            <span id="bookingArtistName">—</span>
+        </div>
+
+        <form onsubmit="submitBookingForm(event)">
+            <input type="hidden" id="bookingArtistSelect" value="">
+            <div class="field">
+                <label class="field-label" data-en="Your Name" data-ar="اسمك">Your Name</label>
+                <input type="text" class="field-input" required data-en-ph="Full name" data-ar-ph="الاسم الكامل" placeholder="Full name">
+            </div>
+            <div class="field">
+                <label class="field-label" data-en="Email" data-ar="البريد الإلكتروني">Email</label>
+                <input type="email" class="field-input" required data-en-ph="your@email.com" data-ar-ph="your@email.com" placeholder="your@email.com">
+            </div>
+            <div class="field">
+                <label class="field-label" data-en="Phone / WhatsApp" data-ar="الهاتف / واتساب">Phone / WhatsApp</label>
+                <input type="tel" class="field-input" required data-en-ph="+971 XX XXX XXXX" data-ar-ph="+971 XX XXX XXXX" placeholder="+971 XX XXX XXXX">
+            </div>
+            <div class="field">
+                <label class="field-label" data-en="Event Date" data-ar="تاريخ الفعالية">Event Date</label>
+                <input type="date" class="field-input" required>
+            </div>
+            <div class="field">
+                <label class="field-label" data-en="Event Type" data-ar="نوع الفعالية">Event Type</label>
+                <select class="field-select">
+                    <option value="" data-en="Select event type" data-ar="اختر نوع الفعالية">Select event type</option>
+                    <option value="hotel" data-en="Hotel Event" data-ar="فعالية فندقية">Hotel Event</option>
+                    <option value="corp" data-en="Corporate Event" data-ar="فعالية شركات">Corporate Event</option>
+                    <option value="wedding" data-en="Wedding" data-ar="حفل زفاف">Wedding</option>
+                    <option value="private" data-en="Private Party" data-ar="حفلة خاصة">Private Party</option>
+                    <option value="gov" data-en="Government Event" data-ar="فعالية حكومية">Government Event</option>
+                    <option value="other" data-en="Other" data-ar="أخرى">Other</option>
+                </select>
+            </div>
+            <div class="field">
+                <label class="field-label" data-en="Additional Details" data-ar="تفاصيل إضافية">Additional Details</label>
+                <textarea class="field-textarea" data-en-ph="Tell us about your event..." data-ar-ph="أخبرنا عن فعاليتك..." placeholder="Tell us about your event..."></textarea>
+            </div>
+            <button type="submit" class="form-btn" data-en="Send Booking Request" data-ar="أرسل طلب الحجز">Send Booking Request</button>
+        </form>
+    </div>
+</div>
+
+<!-- Script -->
+<script src="js/script.js"></script>
+</body>
+</html>
