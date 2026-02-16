@@ -46,6 +46,7 @@ body {
     color: var(--diamond);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
 }
 
 /* Noise overlay */
@@ -118,9 +119,16 @@ body::after {
     visibility: hidden;
 }
 
+.preloader-logo {
+    width: clamp(60px, 12vw, 100px);
+    height: auto;
+    margin-bottom: 18px;
+    animation: preloaderBrand 2s ease-in-out infinite;
+}
+
 .preloader-brand {
     font-family: var(--fc);
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(1.6rem, 4vw, 2.8rem);
     font-weight: 400;
     letter-spacing: .8em;
     color: var(--gold);
@@ -233,14 +241,25 @@ body[dir="rtl"] .lang-toggle {
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: opacity .3s;
+}
+
+.logo-icon {
+    width: 32px;
+    height: auto;
+}
+
+.logo-text {
     font-family: var(--fc);
     font-size: 1.3rem;
     font-weight: 500;
     letter-spacing: .55em;
     color: var(--gold);
-    text-decoration: none;
     text-transform: uppercase;
-    transition: opacity .3s;
 }
 
 .logo:hover {
@@ -1463,11 +1482,21 @@ body[dir="rtl"] .contact-person-cta {
 }
 
 .footer-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
     font-family: var(--fc);
     font-size: .9rem;
     letter-spacing: .5em;
     color: var(--gold-dark);
     margin-bottom: 18px;
+}
+
+.footer-logo {
+    width: 40px;
+    height: auto;
+    opacity: .6;
 }
 
 .footer-links {
@@ -1698,6 +1727,15 @@ body[dir="rtl"] .modal-artist-badge span {
         display: block;
     }
 
+    .logo-icon {
+        width: 28px;
+    }
+
+    .logo-text {
+        font-size: 1.1rem;
+        letter-spacing: .4em;
+    }
+
     .section-pad {
         padding: 85px 22px;
     }
@@ -1782,6 +1820,15 @@ body[dir="rtl"] .modal-artist-badge span {
 
     .hero-cta {
         padding: 16px 36px;
+    }
+
+    .logo-text {
+        font-size: .95rem;
+        letter-spacing: .3em;
+    }
+
+    .footer-logo {
+        width: 32px;
     }
 
     .hero-tag {
