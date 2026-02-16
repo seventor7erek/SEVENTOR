@@ -33,7 +33,7 @@ function setLang(l) {
     document.body.dir = l === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = l;
 
-    // Toggle button states
+    // Toggle ALL language button states (header + mobile overlay)
     document.querySelectorAll('.lang-opt').forEach(btn => {
         btn.classList.toggle('on', btn.dataset.l === l);
     });
@@ -52,6 +52,9 @@ function setLang(l) {
     document.querySelectorAll('.book-btn').forEach(btn => {
         btn.textContent = l === 'ar' ? 'احجز الآن' : 'Book Now';
     });
+
+    // Close mobile menu if open
+    closeMob();
 }
 
 // ===== Header Pin on Scroll =====

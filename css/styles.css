@@ -23,6 +23,7 @@
     --fc: 'Playfair Display', 'Georgia', serif;
     --fs: 'Cormorant Garamond', 'Garamond', serif;
     --fp: 'Didact Gothic', 'Helvetica Neue', sans-serif;
+    --fb: 'Outfit', 'Helvetica Neue', sans-serif;
     --fc-ar: 'Amiri', 'Traditional Arabic', serif;
     --fs-ar: 'Noto Naskh Arabic', 'Traditional Arabic', serif;
     --fp-ar: 'Cairo', 'Tahoma', sans-serif;
@@ -44,6 +45,7 @@ html {
 body {
     background: var(--emerald-deep);
     color: var(--diamond);
+    font-family: var(--fb);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
 }
@@ -185,13 +187,8 @@ body::after {
     border-radius: 50px;
     padding: 4px;
     transition: all .4s;
-    margin-left: 28px;
     flex-shrink: 0;
-}
-
-body[dir="rtl"] .lang-toggle {
-    margin-left: 0;
-    margin-right: 28px;
+    margin-inline-start: 18px;
 }
 
 .lang-toggle:hover {
@@ -227,7 +224,7 @@ body[dir="rtl"] .lang-toggle {
     padding: 30px 55px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     z-index: 100;
     transition: all .6s cubic-bezier(.4, 0, .2, 1);
 }
@@ -237,6 +234,20 @@ body[dir="rtl"] .lang-toggle {
     backdrop-filter: blur(24px);
     padding: 18px 55px;
     border-bottom: 1px solid rgba(200, 169, 81, .08);
+}
+
+/* Logo + lang-toggle pinned to left */
+.header-left {
+    position: absolute;
+    left: 55px;
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+body[dir="rtl"] .header-left {
+    left: auto;
+    right: 55px;
 }
 
 .logo {
@@ -314,12 +325,20 @@ body[dir="rtl"] .nav-list a::after {
 }
 
 /* --- Mobile Menu --- */
+/* Burger pinned to right */
 .burger {
     display: none;
     background: none;
     border: none;
     cursor: pointer;
     padding: 8px;
+    position: absolute;
+    right: 28px;
+}
+
+body[dir="rtl"] .burger {
+    right: auto;
+    left: 28px;
 }
 
 .burger i {
@@ -482,6 +501,7 @@ body[dir="rtl"] .hero-over {
     font-size: clamp(3.2rem, 9vw, 7.5rem);
     font-weight: 400;
     letter-spacing: .35em;
+    padding-inline-start: .35em;
     text-transform: uppercase;
     color: var(--gold);
     line-height: 1.05;
@@ -492,8 +512,13 @@ body[dir="rtl"] .hero-over {
 }
 
 body[dir="rtl"] .hero-title {
-    font-family: var(--fc);
-    letter-spacing: .35em;
+    font-family: var(--fc-ar);
+    font-size: clamp(2.8rem, 8vw, 6rem);
+    letter-spacing: .08em;
+    padding-inline-start: .08em;
+    font-weight: 700;
+    line-height: 1.2;
+    text-transform: none;
 }
 
 .hero-tag {
@@ -773,17 +798,19 @@ body[dir="rtl"] .service-name {
 }
 
 .service-text {
-    font-family: var(--fs);
-    font-size: .95rem;
+    font-family: var(--fb);
+    font-size: .88rem;
     font-weight: 300;
     line-height: 1.85;
     color: var(--text-s);
+    letter-spacing: .01em;
 }
 
 body[dir="rtl"] .service-text {
-    font-family: var(--fs-ar);
-    font-size: .92rem;
+    font-family: var(--fp-ar);
+    font-size: .88rem;
     line-height: 2;
+    letter-spacing: 0;
 }
 
 /* --- Artists Section --- */
@@ -921,18 +948,21 @@ body[dir="rtl"] .artist-name {
 }
 
 .artist-role {
-    font-family: var(--fp);
-    font-size: .6rem;
-    letter-spacing: .28em;
-    text-transform: uppercase;
-    color: var(--gold-dark);
+    font-family: var(--fb);
+    font-size: .72rem;
+    letter-spacing: .06em;
+    text-transform: none;
+    color: var(--text-s);
     margin-bottom: 20px;
+    font-weight: 300;
+    line-height: 1.6;
 }
 
 body[dir="rtl"] .artist-role {
     font-family: var(--fp-ar);
-    font-size: .75rem;
-    letter-spacing: .04em;
+    font-size: .78rem;
+    letter-spacing: .02em;
+    font-weight: 400;
 }
 
 .book-btn {
@@ -1122,17 +1152,19 @@ body[dir="rtl"] .pill-heading {
 }
 
 .pill-desc {
-    font-family: var(--fs);
-    font-size: .92rem;
+    font-family: var(--fb);
+    font-size: .85rem;
     font-weight: 300;
     color: var(--text-s);
-    line-height: 1.75;
+    line-height: 1.8;
+    letter-spacing: .01em;
 }
 
 body[dir="rtl"] .pill-desc {
-    font-family: var(--fs-ar);
-    font-size: .88rem;
+    font-family: var(--fp-ar);
+    font-size: .85rem;
     line-height: 1.95;
+    letter-spacing: 0;
 }
 
 /* --- Contact --- */
@@ -1378,18 +1410,19 @@ body[dir="rtl"] .contact-person-alias {
 }
 
 .contact-person-role {
-    font-family: var(--fs);
-    font-size: .92rem;
+    font-family: var(--fb);
+    font-size: .88rem;
     font-weight: 300;
-    font-style: italic;
+    font-style: normal;
     color: var(--text-s);
     margin-bottom: 14px;
+    letter-spacing: .01em;
 }
 
 body[dir="rtl"] .contact-person-role {
-    font-family: var(--fs-ar);
-    font-style: normal;
+    font-family: var(--fp-ar);
     font-weight: 500;
+    letter-spacing: 0;
 }
 
 .contact-person-cta {
@@ -1656,18 +1689,19 @@ body[dir="rtl"] .modal-title {
 }
 
 .modal-subtitle {
-    font-family: var(--fs);
-    font-size: .92rem;
+    font-family: var(--fb);
+    font-size: .88rem;
     font-weight: 300;
     color: var(--text-s);
     text-align: center;
     margin-bottom: 35px;
-    font-style: italic;
+    font-style: normal;
+    letter-spacing: .01em;
 }
 
 body[dir="rtl"] .modal-subtitle {
-    font-family: var(--fs-ar);
-    font-style: normal;
+    font-family: var(--fp-ar);
+    letter-spacing: 0;
 }
 
 .modal-artist-badge {
@@ -1709,6 +1743,20 @@ body[dir="rtl"] .modal-artist-badge span {
 }
 
 /* --- Responsive --- */
+/* --- Mobile Overlay Language Toggle --- */
+.mob-lang {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 32px;
+    background: rgba(7, 31, 25, .65);
+    border: 1px solid rgba(200, 169, 81, .18);
+    border-radius: 50px;
+    padding: 4px;
+    align-self: center;
+}
+
 @media (max-width: 900px) {
     .header {
         padding: 20px 28px;
@@ -1718,12 +1766,31 @@ body[dir="rtl"] .modal-artist-badge span {
         padding: 14px 28px;
     }
 
+    .header-left {
+        left: 28px;
+    }
+
+    body[dir="rtl"] .header-left {
+        left: auto;
+        right: 28px;
+    }
+
     .nav-list {
         display: none;
     }
 
     .burger {
         display: block;
+        right: 28px;
+    }
+
+    body[dir="rtl"] .burger {
+        right: auto;
+        left: 28px;
+    }
+
+    .lang-toggle {
+        margin-inline-start: 12px;
     }
 
     .logo-icon {
@@ -1755,15 +1822,6 @@ body[dir="rtl"] .modal-artist-badge span {
     .contact-details {
         flex-direction: column;
         gap: 22px;
-    }
-
-    .lang-toggle {
-        margin-left: 16px;
-    }
-
-    body[dir="rtl"] .lang-toggle {
-        margin-left: 0;
-        margin-right: 16px;
     }
 
     .service-grid {
@@ -1811,10 +1869,13 @@ body[dir="rtl"] .modal-artist-badge span {
 @media (max-width: 480px) {
     .hero-title {
         letter-spacing: .12em;
+        padding-inline-start: .12em;
     }
 
     body[dir="rtl"] .hero-title {
-        font-size: 2.2rem;
+        font-size: clamp(2rem, 7vw, 3rem);
+        letter-spacing: .04em;
+        padding-inline-start: .04em;
     }
 
     .hero-cta {
@@ -1824,6 +1885,15 @@ body[dir="rtl"] .modal-artist-badge span {
     .logo-text {
         font-size: .95rem;
         letter-spacing: .3em;
+    }
+
+    .header-left {
+        left: 16px;
+    }
+
+    body[dir="rtl"] .header-left {
+        left: auto;
+        right: 16px;
     }
 
     .footer-logo {
@@ -1887,12 +1957,7 @@ body[dir="rtl"] .modal-artist-badge span {
     }
 
     .lang-toggle {
-        margin-left: 10px;
-    }
-
-    body[dir="rtl"] .lang-toggle {
-        margin-left: 0;
-        margin-right: 10px;
+        margin-inline-start: 10px;
     }
 
     .lang-opt {
