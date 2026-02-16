@@ -79,11 +79,7 @@
     <!-- Sparkles -->
     <div class="sparkles" id="sparkles"></div>
 
-    <!-- Language Toggle -->
-    <div class="lang-toggle">
-        <button class="lang-opt on" onclick="setLang('en')" data-l="en" aria-label="Switch to English">EN</button>
-        <button class="lang-opt" onclick="setLang('ar')" data-l="ar" aria-label="التبديل إلى العربية">عربي</button>
-    </div>
+
 
     <!-- Mobile Overlay -->
     <div class="mob-overlay" id="mob" role="dialog" aria-label="Navigation menu">
@@ -109,6 +105,10 @@
             <li><a href="#why" data-en="Why Us" data-ar="لماذا نحن">Why Us</a></li>
             <li><a href="#contact" data-en="Contact" data-ar="تواصل">Contact</a></li>
         </ul>
+        <div class="lang-toggle">
+            <button class="lang-opt on" onclick="setLang('en')" data-l="en" aria-label="Switch to English">EN</button>
+            <button class="lang-opt" onclick="setLang('ar')" data-l="ar" aria-label="التبديل إلى العربية">عربي</button>
+        </div>
         <button class="burger" onclick="openMob()" aria-label="Open navigation menu">
             <i></i><i></i><i></i>
         </button>
@@ -589,7 +589,8 @@
             <div class="contact-details">
                 <div class="contact-detail-item">
                     <div class="contact-detail-label" data-en="WhatsApp" data-ar="واتساب">WhatsApp</div>
-                    <div class="contact-detail-value"><a href="https://wa.me/971544117716">+971 544 11 77 16</a></div>
+                    <div class="contact-detail-value"><a href="https://wa.me/971544117716" dir="ltr">+971 544 11 77
+                            16</a></div>
                 </div>
                 <div class="contact-detail-item">
                     <div class="contact-detail-label" data-en="Email" data-ar="الإيميل">Email</div>

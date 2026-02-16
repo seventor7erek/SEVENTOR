@@ -167,10 +167,7 @@ body::after {
 
 /* --- Language Toggle --- */
 .lang-toggle {
-    position: fixed;
-    top: 28px;
-    right: 28px;
-    left: auto;
+    position: relative;
     z-index: 1001;
     display: flex;
     align-items: center;
@@ -181,12 +178,13 @@ body::after {
     border-radius: 50px;
     padding: 4px;
     transition: all .4s;
+    margin-left: 28px;
+    flex-shrink: 0;
 }
 
-/* Keep language toggle on the RIGHT side always — no RTL flip */
 body[dir="rtl"] .lang-toggle {
-    right: 28px;
-    left: auto;
+    margin-left: 0;
+    margin-right: 28px;
 }
 
 .lang-toggle:hover {
@@ -1676,14 +1674,12 @@ body[dir="rtl"] .modal-artist-badge span {
     }
 
     .lang-toggle {
-        top: 18px;
-        right: 18px;
-        left: auto;
+        margin-left: 16px;
     }
 
     body[dir="rtl"] .lang-toggle {
-        right: 18px;
-        left: auto;
+        margin-left: 0;
+        margin-right: 16px;
     }
 
     .service-grid {
@@ -1798,14 +1794,12 @@ body[dir="rtl"] .modal-artist-badge span {
     }
 
     .lang-toggle {
-        top: 14px;
-        right: 14px;
-        left: auto;
+        margin-left: 10px;
     }
 
     body[dir="rtl"] .lang-toggle {
-        right: 14px;
-        left: auto;
+        margin-left: 0;
+        margin-right: 10px;
     }
 
     .lang-opt {
