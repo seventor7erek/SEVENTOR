@@ -87,7 +87,7 @@
         <nav class="mob-nav">
             <a href="#about" onclick="closeMob()" data-en="About" data-ar="من نحن">About</a>
             <a href="#services" onclick="closeMob()" data-en="Services" data-ar="خدماتنا">Services</a>
-            <a href="#artists" onclick="closeMob()" data-en="Artists" data-ar="فنانونا">Artists</a>
+            <a href="#artists" onclick="closeMob()" data-en="Talent" data-ar="فنانونا">Talent</a>
             <a href="#showcase" onclick="closeMob()" data-en="Portfolio" data-ar="أعمالنا">Portfolio</a>
             <a href="#why" onclick="closeMob()" data-en="Why Us" data-ar="لماذا نحن">Why Us</a>
             <a href="#contact" onclick="closeMob()" data-en="Contact" data-ar="تواصل">Contact</a>
@@ -100,7 +100,7 @@
         <ul class="nav-list">
             <li><a href="#about" data-en="About" data-ar="من نحن">About</a></li>
             <li><a href="#services" data-en="Services" data-ar="خدماتنا">Services</a></li>
-            <li><a href="#artists" data-en="Artists" data-ar="فنانونا">Artists</a></li>
+            <li><a href="#artists" data-en="Talent" data-ar="فنانونا">Talent</a></li>
             <li><a href="#showcase" data-en="Portfolio" data-ar="أعمالنا">Portfolio</a></li>
             <li><a href="#why" data-en="Why Us" data-ar="لماذا نحن">Why Us</a></li>
             <li><a href="#contact" data-en="Contact" data-ar="تواصل">Contact</a></li>
@@ -217,7 +217,7 @@
     <!-- ==================== ARTISTS ==================== -->
     <section class="section-pad artists-bg" id="artists">
         <div class="reveal">
-            <p class="section-overline" data-en="Our Artists" data-ar="فنانونا">Our Artists</p>
+            <p class="section-overline" data-en="Our Services" data-ar="خدماتنا">Our Services</p>
             <h2 class="section-title" data-en="World-Class Talent" data-ar="نخبة من المواهب العالمية">World-Class Talent
             </h2>
             <div class="ornament">
@@ -225,26 +225,6 @@
                 <div class="gem"></div>
                 <div class="bar"></div>
             </div>
-        </div>
-
-        <!-- Category Tabs -->
-        <div class="cat-tabs reveal">
-            <button class="cat-tab active" onclick="filterArtists('all', this)" data-en="All"
-                data-ar="الكل">All</button>
-            <button class="cat-tab" onclick="filterArtists('oud', this)" data-en="🪕 Oud" data-ar="🪕 عود">🪕
-                Oud</button>
-            <button class="cat-tab" onclick="filterArtists('piano', this)" data-en="🎹 Piano" data-ar="🎹 بيانو">🎹
-                Piano</button>
-            <button class="cat-tab" onclick="filterArtists('percussion', this)" data-en="🥁 Percussion"
-                data-ar="🥁 إيقاع">🥁 Percussion</button>
-            <button class="cat-tab" onclick="filterArtists('violin', this)" data-en="🎻 Violin" data-ar="🎻 كمان">🎻
-                Violin</button>
-            <button class="cat-tab" onclick="filterArtists('saxophone', this)" data-en="🎷 Saxophone"
-                data-ar="🎷 ساكسفون">🎷 Saxophone</button>
-            <button class="cat-tab" onclick="filterArtists('vocalist', this)" data-en="🎤 Vocalist"
-                data-ar="🎤 مغنّي">🎤 Vocalist</button>
-            <button class="cat-tab" onclick="filterArtists('dj', this)" data-en="🎧 DJ" data-ar="🎧 دي جي">🎧
-                DJ</button>
         </div>
 
         <!-- Service Grid -->
@@ -462,74 +442,20 @@
                 <div class="bar"></div>
             </div>
         </div>
-        <div class="contact-box reveal">
-            <form onsubmit="submitContactForm(event)">
-                <div class="field">
-                    <label class="field-label" data-en="Full Name" data-ar="الاسم الكامل">Full Name</label>
-                    <input type="text" class="field-input" required data-en-ph="Your name" data-ar-ph="اسمك الكامل"
-                        placeholder="Your name">
-                </div>
-                <div class="field">
-                    <label class="field-label" data-en="Email" data-ar="البريد الإلكتروني">Email</label>
-                    <input type="email" class="field-input" required data-en-ph="your@email.com"
-                        data-ar-ph="your@email.com" placeholder="your@email.com">
-                </div>
-                <div class="field">
-                    <label class="field-label" data-en="Phone / WhatsApp" data-ar="الهاتف / واتساب">Phone /
-                        WhatsApp</label>
-                    <input type="tel" class="field-input" data-en-ph="+971 XX XXX XXXX" data-ar-ph="+971 XX XXX XXXX"
-                        placeholder="+971 XX XXX XXXX">
-                </div>
-                <div class="field">
-                    <label class="field-label" data-en="Event Type" data-ar="نوع الفعالية">Event Type</label>
-                    <select class="field-select">
-                        <option value="" data-en="Select event type" data-ar="اختر نوع الفعالية">Select event type
-                        </option>
-                        <option value="hotel" data-en="Hotel Entertainment" data-ar="ترفيه فنادق">Hotel Entertainment
-                        </option>
-                        <option value="gov" data-en="Government Event" data-ar="فعالية حكومية">Government Event</option>
-                        <option value="corp" data-en="Corporate Event" data-ar="فعالية شركات">Corporate Event</option>
-                        <option value="priv" data-en="Private / VIP" data-ar="خاصة / VIP">Private / VIP</option>
-                        <option value="other" data-en="Other" data-ar="أخرى">Other</option>
-                    </select>
-                </div>
-                <div class="field">
-                    <label class="field-label" data-en="Your Vision" data-ar="أخبرنا عن رؤيتك">Your Vision</label>
-                    <textarea class="field-textarea" data-en-ph="Tell us about your event vision..."
-                        data-ar-ph="صف لنا رؤيتك للفعالية..."
-                        placeholder="Tell us about your event vision..."></textarea>
-                </div>
-                <button type="submit" class="form-btn" data-en="Send Request" data-ar="أرسل الطلب">Send Request</button>
-            </form>
-            <div class="contact-details">
-                <div class="contact-detail-item">
-                    <div class="contact-detail-label" data-en="WhatsApp" data-ar="واتساب">WhatsApp</div>
-                    <div class="contact-detail-value"><a href="https://wa.me/971544117716" dir="ltr">+971 544 11 77
-                            16</a></div>
-                </div>
-                <div class="contact-detail-item">
-                    <div class="contact-detail-label" data-en="Email" data-ar="الإيميل">Email</div>
-                    <div class="contact-detail-value"><a href="mailto:info@seventor.com">info@seventor.com</a></div>
-                </div>
-                <div class="contact-detail-item">
-                    <div class="contact-detail-label" data-en="Location" data-ar="الموقع">Location</div>
-                    <div class="contact-detail-value" data-en="Dubai, UAE" data-ar="دبي، الإمارات">Dubai, UAE</div>
-                </div>
-            </div>
 
-            <!-- Ali Contact Card -->
-            <div class="contact-person reveal">
-                <div class="contact-person-photo">
-                    <img src="img/image.png" alt="Ali Yaser Al Harik — 7EREK" loading="lazy">
-                </div>
-                <div class="contact-person-info">
-                    <div class="contact-person-name">ALI YASER AL HARIK</div>
-                    <div class="contact-person-alias">7EREK <span data-en="" data-ar="— حرك"></span></div>
-                    <div class="contact-person-role" data-en="Founder & Creative Director"
-                        data-ar="المؤسس والمدير الإبداعي">Founder & Creative Director</div>
-                    <a href="https://wa.me/971544117716" class="contact-person-cta" data-en="Chat on WhatsApp"
-                        data-ar="تواصل عبر واتساب">Chat on WhatsApp</a>
-                </div>
+        <!-- Ali Contact Card — Main CTA -->
+        <div class="contact-person contact-person-centered reveal">
+            <div class="contact-person-photo">
+                <img src="img/image.png" alt="Ali Yaser Al Harik — 7EREK" loading="lazy">
+            </div>
+            <div class="contact-person-info">
+                <div class="contact-person-name">ALI YASER AL HARIK</div>
+                <div class="contact-person-alias">7EREK <span data-en="" data-ar="— حرك"></span></div>
+                <div class="contact-person-role" data-en="Founder & Creative Director"
+                    data-ar="المؤسس والمدير الإبداعي">Founder & Creative Director</div>
+                <a href="https://wa.me/971544117716?text=Hi%20Ali%2C%20I'm%20interested%20in%20working%20with%20SEVENTOR%20for%20an%20upcoming%20event.%20I'd%20love%20to%20discuss%20the%20details!"
+                    class="contact-person-cta" data-en="Chat on WhatsApp" data-ar="تواصل عبر واتساب"
+                    onclick="return openContactWhatsApp(event)">Chat on WhatsApp</a>
             </div>
         </div>
     </section>
@@ -565,6 +491,11 @@
 
             <form id="bookingForm" onsubmit="submitBookingForm(event)">
                 <input type="hidden" id="bookingServiceKey" value="">
+                <div class="field">
+                    <label class="field-label" data-en="Number of Performers" data-ar="عدد العازفين">Number of
+                        Performers</label>
+                    <input type="number" class="field-input" id="bk-qty" min="1" max="20" value="1" required dir="ltr">
+                </div>
                 <div class="field">
                     <label class="field-label" data-en="Your Name" data-ar="اسمك">Your Name</label>
                     <input type="text" class="field-input" id="bk-name" required data-en-ph="Full name"

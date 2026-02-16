@@ -1400,6 +1400,46 @@ body[dir="rtl"] .contact-person-cta {
     border-color: var(--gold);
 }
 
+/* Centered variant for main contact section */
+.contact-person-centered {
+    flex-direction: column;
+    text-align: center;
+    max-width: 480px;
+    margin: 50px auto 0;
+    padding: 45px 35px;
+    background: rgba(7, 31, 25, .55);
+    border: 1px solid rgba(200, 169, 81, .15);
+    border-radius: 12px;
+}
+
+.contact-person-centered .contact-person-photo {
+    width: 130px;
+    height: 130px;
+    margin: 0 auto;
+}
+
+.contact-person-centered .contact-person-name {
+    font-size: 1rem;
+    letter-spacing: .25em;
+}
+
+.contact-person-centered .contact-person-alias {
+    font-size: .72rem;
+    letter-spacing: .3em;
+}
+
+.contact-person-centered .contact-person-role {
+    font-size: 1rem;
+    margin-bottom: 22px;
+}
+
+.contact-person-centered .contact-person-cta {
+    font-size: .72rem;
+    padding: 14px 32px;
+    border-radius: 4px;
+    background: rgba(200, 169, 81, .1);
+}
+
 @media (max-width: 480px) {
     .contact-person {
         flex-direction: column;

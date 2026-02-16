@@ -52,14 +52,6 @@ function setLang(l) {
     document.querySelectorAll('.book-btn').forEach(btn => {
         btn.textContent = l === 'ar' ? 'احجز الآن' : 'Book Now';
     });
-
-    // Update category tabs
-    document.querySelectorAll('.cat-tab').forEach(tab => {
-        const key = 'data-' + l;
-        if (tab.hasAttribute(key)) {
-            tab.textContent = tab.getAttribute(key);
-        }
-    });
 }
 
 // ===== Header Pin on Scroll =====
@@ -100,41 +92,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ===== Contact Form Submit =====
-function submitContactForm(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('.form-btn');
-    const originalText = btn.textContent;
-    btn.textContent = lang === 'ar' ? '✓ تم الإرسال' : '✓ Sent Successfully';
-    btn.style.background = 'var(--emerald-light)';
-    btn.style.borderColor = 'var(--emerald-light)';
-    btn.style.color = 'var(--gold-light)';
-    setTimeout(() => {
-        btn.textContent = originalText;
-        btn.style.background = '';
-        btn.style.borderColor = '';
-        btn.style.color = '';
-        e.target.reset();
-    }, 3500);
-}
-
-// ===== Artists/Services Category Filter =====
-function filterArtists(category, clickedTab) {
-    document.querySelectorAll('.cat-tab').forEach(tab => tab.classList.remove('active'));
-    clickedTab.classList.add('active');
-
-    const cards = document.querySelectorAll('.artist-card');
-    cards.forEach(card => {
-        if (category === 'all' || card.dataset.category === category) {
-            card.classList.remove('hidden');
-            setTimeout(() => card.classList.add('visible'), 50);
-        } else {
-            card.classList.add('hidden');
-            card.classList.remove('visible');
-        }
-    });
-}
-
 // ===== Service Data =====
 const serviceData = {
     oud: { icon: '🪕', en: 'Oud Performance', ar: 'عزف عود' },
@@ -159,6 +116,10 @@ function openBooking(serviceKey) {
         nameEl.textContent = lang === 'ar' ? service.ar : service.en;
         hiddenInput.value = serviceKey;
     }
+
+    // Reset quantity to 1
+    const qtyInput = document.getElementById('bk-qty');
+    if (qtyInput) qtyInput.value = 1;
 
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -194,6 +155,7 @@ function submitBookingForm(e) {
     const service = serviceData[serviceKey];
     const serviceName = service ? service.en : serviceKey;
     const serviceNameAr = service ? service.ar : '';
+    const qty = document.getElementById('bk-qty').value || '1';
     const name = document.getElementById('bk-name').value.trim();
     const phone = document.getElementById('bk-phone').value.trim();
     const date = document.getElementById('bk-date').value;
@@ -224,19 +186,20 @@ function submitBookingForm(e) {
     msg += `📋 *Service:* ${serviceName}`;
     if (serviceNameAr) msg += ` (${serviceNameAr})`;
     msg += `\n`;
+    msg += `👥 *Quantity:* ${qty} performer${parseInt(qty) > 1 ? 's' : ''}\n`;
     msg += `👤 *Name:* ${name}\n`;
     msg += `📱 *Phone:* ${phone}\n`;
     msg += `📅 *Date:* ${formattedDate}\n`;
     msg += `🕐 *Time:* ${formatTime(startTime)} — ${formatTime(endTime)}\n`;
     if (eventType) msg += `🎯 *Event Type:* ${eventType}\n`;
     if (notes) msg += `📝 *Notes:* ${notes}\n`;
-    msg += `\n_Sent from seventor.vercel.app_`;
+    msg += `\n_Sent from seventor.com_`;
 
     // Open WhatsApp with pre-filled message
     const waURL = 'https://wa.me/971544117716?text=' + encodeURIComponent(msg);
     window.open(waURL, '_blank');
 
-    // Reset form and close modal
+    // Visual feedback and reset
     const btn = e.target.querySelector('.form-btn');
     const originalText = btn.textContent;
     btn.textContent = lang === 'ar' ? '✓ تم!' : '✓ Sent!';
@@ -252,4 +215,15 @@ function submitBookingForm(e) {
         e.target.reset();
         closeBooking();
     }, 2000);
+}
+
+// ===== Contact WhatsApp =====
+function openContactWhatsApp(e) {
+    const msgEn = "Hi Ali, I'm interested in working with SEVENTOR for an upcoming event. I'd love to discuss the details!";
+    const msgAr = "مرحبا علي، أنا مهتم بالتعاقد مع سِڤَنتور لفعالية قادمة. أحب نتناقش بالتفاصيل!";
+    const msg = lang === 'ar' ? msgAr : msgEn;
+    const url = 'https://wa.me/971544117716?text=' + encodeURIComponent(msg);
+    e.preventDefault();
+    window.open(url, '_blank');
+    return false;
 }
