@@ -177,7 +177,6 @@ body::after {
 /* --- Language Toggle --- */
 .lang-toggle {
     position: relative;
-    z-index: 1001;
     display: flex;
     align-items: center;
     background: rgba(7, 31, 25, .65);
@@ -356,6 +355,7 @@ body[dir="rtl"] .burger {
     background: rgba(4, 15, 11, .97);
     z-index: 999;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     opacity: 0;
@@ -1790,7 +1790,7 @@ body[dir="rtl"] .modal-artist-badge span {
     }
 
     .lang-toggle {
-        margin-inline-start: 12px;
+        display: none;
     }
 
     .logo-icon {
@@ -1954,10 +1954,6 @@ body[dir="rtl"] .modal-artist-badge span {
     .footer-links {
         flex-wrap: wrap;
         gap: 12px;
-    }
-
-    .lang-toggle {
-        margin-inline-start: 10px;
     }
 
     .lang-opt {
