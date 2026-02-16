@@ -2,15 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
     <url>
-        <loc>https://seventor.vercel.app/</loc>
+        <loc>https://seventor.com/</loc>
         <lastmod>2026-02-16</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
-        <xhtml:link rel="alternate" hreflang="en" href="https://seventor.vercel.app/"/>
-        <xhtml:link rel="alternate" hreflang="ar" href="https://seventor.vercel.app/"/>
+        <xhtml:link rel="alternate" hreflang="en" href="https://seventor.com/"/>
+        <xhtml:link rel="alternate" hreflang="ar" href="https://seventor.com/"/>
     </url>
     <url>
-        <loc>https://seventor.vercel.app/terms.html</loc>
+        <loc>https://seventor.com/terms.html</loc>
         <lastmod>2026-02-16</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
