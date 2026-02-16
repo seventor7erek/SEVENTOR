@@ -1790,7 +1790,7 @@ body[dir="rtl"] .modal-artist-badge span {
     }
 
     .lang-toggle {
-        display: none;
+        margin-inline-start: 10px;
     }
 
     .logo-icon {

@@ -28,8 +28,28 @@ window.addEventListener('load', () => {
 // ===== Language Toggle =====
 let lang = 'en';
 
+// Auto-detect language on first visit
+(function detectLang() {
+    const saved = localStorage.getItem('seventor-lang');
+    if (saved) {
+        // User previously chose a language — respect it
+        lang = saved;
+    } else {
+        // First visit — detect from browser
+        const browserLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+        lang = browserLang.startsWith('ar') ? 'ar' : 'en';
+    }
+    // Apply after DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => setLang(lang));
+    } else {
+        setLang(lang);
+    }
+})();
+
 function setLang(l) {
     lang = l;
+    localStorage.setItem('seventor-lang', l);
     document.body.dir = l === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = l;
 
@@ -52,9 +72,6 @@ function setLang(l) {
     document.querySelectorAll('.book-btn').forEach(btn => {
         btn.textContent = l === 'ar' ? 'احجز الآن' : 'Book Now';
     });
-
-    // Close mobile menu if open
-    closeMob();
 }
 
 // ===== Header Pin on Scroll =====
