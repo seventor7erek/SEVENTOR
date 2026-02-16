@@ -483,6 +483,7 @@ body[dir="rtl"] .mob-nav a {
     font-size: .68rem;
     font-weight: 400;
     letter-spacing: .55em;
+    text-indent: .55em;
     text-transform: uppercase;
     color: var(--gold);
     margin-bottom: 28px;
@@ -502,7 +503,7 @@ body[dir="rtl"] .hero-over {
     font-size: clamp(3.2rem, 9vw, 7.5rem);
     font-weight: 400;
     letter-spacing: .35em;
-    padding-inline-start: .35em;
+    text-indent: .35em;
     text-transform: uppercase;
     color: var(--gold);
     line-height: 1.05;
@@ -516,7 +517,7 @@ body[dir="rtl"] .hero-title {
     font-family: var(--fc-ar);
     font-size: clamp(2.8rem, 8vw, 6rem);
     letter-spacing: .08em;
-    padding-inline-start: .08em;
+    text-indent: .08em;
     font-weight: 700;
     line-height: 1.2;
     text-transform: none;
