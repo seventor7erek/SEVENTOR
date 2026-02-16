@@ -46,7 +46,6 @@ body {
     color: var(--diamond);
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
-    scroll-behavior: smooth;
 }
 
 /* Noise overlay */
