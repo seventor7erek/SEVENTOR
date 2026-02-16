@@ -170,6 +170,7 @@ body::after {
     position: fixed;
     top: 28px;
     right: 28px;
+    left: auto;
     z-index: 1001;
     display: flex;
     align-items: center;
@@ -182,9 +183,10 @@ body::after {
     transition: all .4s;
 }
 
+/* Keep language toggle on the RIGHT side always — no RTL flip */
 body[dir="rtl"] .lang-toggle {
-    right: auto;
-    left: 28px;
+    right: 28px;
+    left: auto;
 }
 
 .lang-toggle:hover {
@@ -1676,11 +1678,12 @@ body[dir="rtl"] .modal-artist-badge span {
     .lang-toggle {
         top: 18px;
         right: 18px;
+        left: auto;
     }
 
     body[dir="rtl"] .lang-toggle {
-        right: auto;
-        left: 18px;
+        right: 18px;
+        left: auto;
     }
 
     .service-grid {
@@ -1704,6 +1707,25 @@ body[dir="rtl"] .modal-artist-badge span {
         padding: 8px 16px;
         font-size: .58rem;
     }
+
+    .contact-person {
+        max-width: 100%;
+        padding: 24px 20px;
+        gap: 20px;
+    }
+
+    .contact-person-photo {
+        width: 90px;
+        height: 90px;
+    }
+
+    .footer {
+        padding: 40px 22px;
+    }
+
+    .footer-links {
+        gap: 18px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1719,11 +1741,75 @@ body[dir="rtl"] .modal-artist-badge span {
         padding: 16px 36px;
     }
 
+    .hero-tag {
+        margin-bottom: 35px;
+    }
+
     .stat-num {
         font-size: 2.1rem;
     }
 
     .artist-grid {
         grid-template-columns: 1fr;
+    }
+
+    .contact-person {
+        flex-direction: column;
+        text-align: center;
+        padding: 28px 18px;
+        gap: 16px;
+    }
+
+    .contact-person-photo {
+        width: 85px;
+        height: 85px;
+    }
+
+    .contact-person-name {
+        font-size: .75rem;
+        letter-spacing: .12em;
+    }
+
+    .contact-person-cta {
+        font-size: .55rem;
+        padding: 9px 18px;
+    }
+
+    .section-pad {
+        padding: 65px 16px;
+    }
+
+    .section-title {
+        font-size: clamp(1.4rem, 6vw, 1.9rem);
+    }
+
+    .about-prose {
+        font-size: 1rem;
+        line-height: 1.9;
+    }
+
+    .pill {
+        padding: 28px 18px;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .lang-toggle {
+        top: 14px;
+        right: 14px;
+        left: auto;
+    }
+
+    body[dir="rtl"] .lang-toggle {
+        right: 14px;
+        left: auto;
+    }
+
+    .lang-opt {
+        padding: 6px 14px;
+        font-size: .6rem;
     }
 }
