@@ -48,7 +48,7 @@ function setLang(l) {
         el.placeholder = el.getAttribute('data-' + l + '-ph');
     });
 
-    // Update artist card Book Now buttons
+    // Update Book Now buttons
     document.querySelectorAll('.book-btn').forEach(btn => {
         btn.textContent = l === 'ar' ? 'احجز الآن' : 'Book Now';
     });
@@ -118,18 +118,15 @@ function submitContactForm(e) {
     }, 3500);
 }
 
-// ===== Artists Category Filter =====
+// ===== Artists/Services Category Filter =====
 function filterArtists(category, clickedTab) {
-    // Update active tab
     document.querySelectorAll('.cat-tab').forEach(tab => tab.classList.remove('active'));
     clickedTab.classList.add('active');
 
-    // Filter cards
     const cards = document.querySelectorAll('.artist-card');
     cards.forEach(card => {
         if (category === 'all' || card.dataset.category === category) {
             card.classList.remove('hidden');
-            // Re-trigger reveal animation
             setTimeout(() => card.classList.add('visible'), 50);
         } else {
             card.classList.add('hidden');
@@ -138,18 +135,29 @@ function filterArtists(category, clickedTab) {
     });
 }
 
+// ===== Service Data =====
+const serviceData = {
+    oud: { icon: '🪕', en: 'Oud Performance', ar: 'عزف عود' },
+    piano: { icon: '🎹', en: 'Piano Performance', ar: 'عزف بيانو' },
+    percussion: { icon: '🥁', en: 'Percussion', ar: 'إيقاع' },
+    violin: { icon: '🎻', en: 'Violin Performance', ar: 'عزف كمان' },
+    saxophone: { icon: '🎷', en: 'Saxophone', ar: 'ساكسفون' },
+    vocalist: { icon: '🎤', en: 'Vocalist', ar: 'مغنّي' },
+    dj: { icon: '🎧', en: 'DJ', ar: 'دي جي' }
+};
+
 // ===== Booking Modal =====
-function openBooking(artistNameEn, artistNameAr) {
+function openBooking(serviceKey) {
     const modal = document.getElementById('bookingModal');
-    const badge = document.getElementById('bookingArtistName');
-    const artistSelect = document.getElementById('bookingArtistSelect');
+    const iconEl = document.getElementById('bookingServiceIcon');
+    const nameEl = document.getElementById('bookingServiceName');
+    const hiddenInput = document.getElementById('bookingServiceKey');
 
-    // Set artist name in badge
-    badge.textContent = lang === 'ar' ? artistNameAr : artistNameEn;
-
-    // Pre-fill the hidden select
-    if (artistSelect) {
-        artistSelect.value = artistNameEn;
+    const service = serviceData[serviceKey];
+    if (service) {
+        iconEl.textContent = service.icon;
+        nameEl.textContent = lang === 'ar' ? service.ar : service.en;
+        hiddenInput.value = serviceKey;
     }
 
     modal.classList.add('open');
@@ -178,15 +186,64 @@ document.addEventListener('keydown', e => {
     }
 });
 
-// Booking form submit
+// ===== Booking Form → WhatsApp =====
 function submitBookingForm(e) {
     e.preventDefault();
+
+    const serviceKey = document.getElementById('bookingServiceKey').value;
+    const service = serviceData[serviceKey];
+    const serviceName = service ? service.en : serviceKey;
+    const serviceNameAr = service ? service.ar : '';
+    const name = document.getElementById('bk-name').value.trim();
+    const phone = document.getElementById('bk-phone').value.trim();
+    const date = document.getElementById('bk-date').value;
+    const startTime = document.getElementById('bk-start').value;
+    const endTime = document.getElementById('bk-end').value;
+    const eventType = document.getElementById('bk-type').value;
+    const notes = document.getElementById('bk-notes').value.trim();
+
+    // Format the date nicely
+    let formattedDate = date;
+    if (date) {
+        const d = new Date(date + 'T00:00:00');
+        formattedDate = d.toLocaleDateString('en-GB', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    }
+
+    // Format time to 12h
+    function formatTime(t) {
+        if (!t) return '';
+        const [h, m] = t.split(':');
+        const hour = parseInt(h);
+        const ampm = hour >= 12 ? 'PM' : 'AM';
+        const h12 = hour % 12 || 12;
+        return h12 + ':' + m + ' ' + ampm;
+    }
+
+    // Build WhatsApp message
+    let msg = `🎵 *SEVENTOR — Booking Request*\n\n`;
+    msg += `📋 *Service:* ${serviceName}`;
+    if (serviceNameAr) msg += ` (${serviceNameAr})`;
+    msg += `\n`;
+    msg += `👤 *Name:* ${name}\n`;
+    msg += `📱 *Phone:* ${phone}\n`;
+    msg += `📅 *Date:* ${formattedDate}\n`;
+    msg += `🕐 *Time:* ${formatTime(startTime)} — ${formatTime(endTime)}\n`;
+    if (eventType) msg += `🎯 *Event Type:* ${eventType}\n`;
+    if (notes) msg += `📝 *Notes:* ${notes}\n`;
+    msg += `\n_Sent from seventor.vercel.app_`;
+
+    // Open WhatsApp with pre-filled message
+    const waURL = 'https://wa.me/971544117716?text=' + encodeURIComponent(msg);
+    window.open(waURL, '_blank');
+
+    // Reset form and close modal
     const btn = e.target.querySelector('.form-btn');
     const originalText = btn.textContent;
-    btn.textContent = lang === 'ar' ? '✓ تم إرسال الحجز' : '✓ Booking Sent!';
+    btn.textContent = lang === 'ar' ? '✓ تم!' : '✓ Sent!';
     btn.style.background = 'var(--emerald-light)';
     btn.style.borderColor = 'var(--emerald-light)';
     btn.style.color = 'var(--gold-light)';
+
     setTimeout(() => {
         btn.textContent = originalText;
         btn.style.background = '';
@@ -194,5 +251,5 @@ function submitBookingForm(e) {
         btn.style.color = '';
         e.target.reset();
         closeBooking();
-    }, 2500);
+    }, 2000);
 }
