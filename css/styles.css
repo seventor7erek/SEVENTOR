@@ -387,7 +387,17 @@ body[dir="rtl"] .mob-nav a {
         radial-gradient(ellipse 70% 60% at 25% 45%, rgba(26, 107, 83, .3) 0%, transparent 70%),
         radial-gradient(ellipse 50% 50% at 80% 20%, rgba(200, 169, 81, .06) 0%, transparent 60%),
         radial-gradient(ellipse 80% 40% at 50% 110%, rgba(4, 15, 11, 1) 0%, transparent 50%),
-        linear-gradient(175deg, var(--emerald-abyss) 0%, var(--emerald) 35%, var(--emerald-deep) 70%, var(--emerald-abyss) 100%);
+        linear-gradient(175deg, rgba(4, 15, 11, .75) 0%, rgba(13, 59, 46, .6) 35%, rgba(7, 31, 25, .7) 70%, rgba(4, 15, 11, .85) 100%);
+    z-index: 1;
+}
+
+.hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
 }
 
 .hero-lat {
@@ -401,6 +411,7 @@ body[dir="rtl"] .mob-nav a {
     background-size: 80px 140px;
     background-position: 0 0, 0 0, 40px 70px, 40px 70px;
     opacity: .6;
+    z-index: 1;
 }
 
 .hero-lt,
@@ -411,6 +422,7 @@ body[dir="rtl"] .mob-nav a {
     width: 100px;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--gold-muted), transparent);
+    z-index: 1;
 }
 
 .hero-lt {
@@ -1273,6 +1285,126 @@ body[dir="rtl"] .contact-detail-value {
 
 .contact-detail-value a:hover {
     color: var(--gold);
+}
+
+/* --- Contact Person Card --- */
+.contact-person {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    max-width: 520px;
+    margin: 50px auto 0;
+    padding: 30px 36px;
+    background: linear-gradient(155deg, rgba(13, 59, 46, .35), rgba(4, 15, 11, .55));
+    border: 1px solid rgba(200, 169, 81, .15);
+    transition: border-color .5s;
+}
+
+.contact-person:hover {
+    border-color: rgba(200, 169, 81, .35);
+}
+
+.contact-person-photo {
+    flex-shrink: 0;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(200, 169, 81, .4);
+    box-shadow: 0 0 30px rgba(200, 169, 81, .08);
+}
+
+.contact-person-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: contrast(1.05);
+}
+
+.contact-person-name {
+    font-family: var(--fc);
+    font-size: .85rem;
+    font-weight: 500;
+    letter-spacing: .2em;
+    color: var(--gold);
+    margin-bottom: 4px;
+}
+
+body[dir="rtl"] .contact-person-name {
+    font-family: var(--fc-ar);
+    letter-spacing: .02em;
+    font-weight: 700;
+}
+
+.contact-person-alias {
+    font-family: var(--fp);
+    font-size: .62rem;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 8px;
+}
+
+body[dir="rtl"] .contact-person-alias {
+    font-family: var(--fp-ar);
+    font-size: .78rem;
+    letter-spacing: .04em;
+}
+
+.contact-person-role {
+    font-family: var(--fs);
+    font-size: .92rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-s);
+    margin-bottom: 14px;
+}
+
+body[dir="rtl"] .contact-person-role {
+    font-family: var(--fs-ar);
+    font-style: normal;
+    font-weight: 500;
+}
+
+.contact-person-cta {
+    display: inline-block;
+    font-family: var(--fp);
+    font-size: .58rem;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border: 1px solid rgba(200, 169, 81, .4);
+    padding: 10px 22px;
+    transition: all .4s;
+}
+
+body[dir="rtl"] .contact-person-cta {
+    font-family: var(--fp-ar);
+    font-size: .75rem;
+    letter-spacing: .04em;
+    font-weight: 600;
+}
+
+.contact-person-cta:hover {
+    background: var(--gold);
+    color: var(--emerald-abyss);
+    border-color: var(--gold);
+}
+
+@media (max-width: 480px) {
+    .contact-person {
+        flex-direction: column;
+        text-align: center;
+        padding: 28px 20px;
+        gap: 20px;
+    }
+
+    .contact-person-photo {
+        width: 90px;
+        height: 90px;
+    }
 }
 
 /* --- Footer --- */
