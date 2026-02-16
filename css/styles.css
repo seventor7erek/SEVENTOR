@@ -29,7 +29,9 @@
 }
 
 /* --- Reset --- */
-*, *::before, *::after {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -76,10 +78,26 @@ body::after {
 }
 
 @keyframes sparkDrift {
-    0%, 100% { opacity: 0; transform: translateY(0) scale(0); }
-    8% { opacity: .9; transform: translateY(-15px) scale(1.2); }
-    50% { opacity: .3; }
-    92% { opacity: 0; transform: translateY(-150px) scale(.3); }
+
+    0%,
+    100% {
+        opacity: 0;
+        transform: translateY(0) scale(0);
+    }
+
+    8% {
+        opacity: .9;
+        transform: translateY(-15px) scale(1.2);
+    }
+
+    50% {
+        opacity: .3;
+    }
+
+    92% {
+        opacity: 0;
+        transform: translateY(-150px) scale(.3);
+    }
 }
 
 /* --- Preloader --- */
@@ -119,14 +137,32 @@ body::after {
 }
 
 @keyframes preloaderBrand {
-    0%, 100% { opacity: .3; }
-    50% { opacity: 1; }
+
+    0%,
+    100% {
+        opacity: .3;
+    }
+
+    50% {
+        opacity: 1;
+    }
 }
 
 @keyframes preloaderLine {
-    0% { width: 0; opacity: 0; }
-    50% { width: 50px; opacity: 1; }
-    100% { width: 0; opacity: 0; }
+    0% {
+        width: 0;
+        opacity: 0;
+    }
+
+    50% {
+        width: 50px;
+        opacity: 1;
+    }
+
+    100% {
+        width: 0;
+        opacity: 0;
+    }
 }
 
 /* --- Language Toggle --- */
@@ -367,7 +403,8 @@ body[dir="rtl"] .mob-nav a {
     opacity: .6;
 }
 
-.hero-lt, .hero-lb {
+.hero-lt,
+.hero-lb {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -376,8 +413,13 @@ body[dir="rtl"] .mob-nav a {
     background: linear-gradient(90deg, transparent, var(--gold-muted), transparent);
 }
 
-.hero-lt { top: 28%; }
-.hero-lb { bottom: 22%; }
+.hero-lt {
+    top: 28%;
+}
+
+.hero-lb {
+    bottom: 22%;
+}
 
 .hero-in {
     position: relative;
@@ -525,13 +567,29 @@ body[dir="rtl"] .hero-sh span {
 }
 
 @keyframes scrollPulse {
-    0%, 100% { opacity: .2; height: 38px; }
-    50% { opacity: 1; height: 56px; }
+
+    0%,
+    100% {
+        opacity: .2;
+        height: 38px;
+    }
+
+    50% {
+        opacity: 1;
+        height: 56px;
+    }
 }
 
 @keyframes revealIn {
-    from { opacity: 0; transform: translateY(35px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* --- Shared Section Styles --- */
@@ -622,7 +680,7 @@ body[dir="rtl"] .about-prose {
 /* --- Services --- */
 .svc-bg {
     background: radial-gradient(ellipse at 100% 0%, rgba(200, 169, 81, .04) 0%, transparent 50%),
-                linear-gradient(180deg, var(--emerald-abyss), var(--emerald), var(--emerald-abyss));
+        linear-gradient(180deg, var(--emerald-abyss), var(--emerald), var(--emerald-abyss));
 }
 
 .service-grid {
@@ -704,7 +762,7 @@ body[dir="rtl"] .service-text {
 /* --- Artists Section --- */
 .artists-bg {
     background: radial-gradient(ellipse at 50% 30%, rgba(200, 169, 81, .05) 0%, transparent 55%),
-                linear-gradient(180deg, var(--emerald-abyss), var(--emerald-deep), var(--emerald-abyss));
+        linear-gradient(180deg, var(--emerald-abyss), var(--emerald-deep), var(--emerald-abyss));
 }
 
 .cat-tabs {
@@ -947,7 +1005,7 @@ body[dir="rtl"] .showcase-placeholder-label {
 /* --- Why Us --- */
 .why-bg {
     background: radial-gradient(ellipse at 50% 0%, rgba(200, 169, 81, .05) 0%, transparent 50%),
-                linear-gradient(180deg, var(--emerald-abyss), var(--emerald));
+        linear-gradient(180deg, var(--emerald-abyss), var(--emerald));
 }
 
 .stats {
@@ -1270,6 +1328,33 @@ body[dir="rtl"] .footer-links a {
 body[dir="rtl"] .footer-copy {
     font-family: var(--fp-ar);
     font-size: .7rem;
+}
+
+.footer-legal {
+    margin-bottom: 18px;
+}
+
+.footer-legal a {
+    font-family: var(--fp);
+    font-size: .58rem;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--text-g);
+    text-decoration: none;
+    transition: color .3s;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 2px;
+}
+
+body[dir="rtl"] .footer-legal a {
+    font-family: var(--fp-ar);
+    font-size: .72rem;
+    letter-spacing: .04em;
+}
+
+.footer-legal a:hover {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
 }
 
 /* --- Booking Modal --- */
