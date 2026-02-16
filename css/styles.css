@@ -475,6 +475,7 @@ body[dir="rtl"] .mob-nav a {
     z-index: 2;
     padding: 0 24px;
     max-width: 900px;
+    text-align: center;
 }
 
 .hero-over {
