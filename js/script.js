@@ -99,8 +99,8 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 // ===== Smooth Scroll (Lenis) =====
 const lenis = new window.Lenis({
-    duration: 1.2,
-    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    lerp: 0.1, // Snappier, more responsive (removes the "floaty" feel)
+    wheelMultiplier: 1.1, // Slightly faster scroll per tick
     smoothWheel: true,
 });
 
