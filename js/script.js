@@ -97,19 +97,7 @@ const revealObserver = new IntersectionObserver(entries => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// ===== Smooth Scroll (Lenis) =====
-const lenis = new window.Lenis({
-    lerp: 0.1, // Snappier, more responsive (removes the "floaty" feel)
-    wheelMultiplier: 1.1, // Slightly faster scroll per tick
-    smoothWheel: true,
-});
-
-function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-}
-requestAnimationFrame(raf);
-
+// ===== Smooth Scroll (Native) =====
 document.addEventListener('click', e => {
     const anchor = e.target.closest('a[href^="#"]');
     if (anchor) {
@@ -118,7 +106,7 @@ document.addEventListener('click', e => {
         if (targetAttr === '#') return;
         const target = document.querySelector(targetAttr);
         if (target) {
-            lenis.scrollTo(target);
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
     }
 });

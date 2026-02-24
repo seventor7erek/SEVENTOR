@@ -29,6 +29,11 @@
     --fp-ar: 'Tajawal', 'Tahoma', sans-serif;
 }
 
+/* --- Smooth Scroll --- */
+html {
+    scroll-behavior: smooth;
+}
+
 /* --- Reset --- */
 *,
 *::before,
