@@ -120,7 +120,8 @@ const serviceData = {
     violin: { icon: '🎻', en: 'Violin Performance', ar: 'عزف كمان' },
     saxophone: { icon: '🎷', en: 'Saxophone', ar: 'ساكسفون' },
     vocalist: { icon: '🎤', en: 'Vocalist', ar: 'مغنّي' },
-    dj: { icon: '🎧', en: 'DJ', ar: 'دي جي' }
+    dj: { icon: '🎧', en: 'DJ', ar: 'دي جي' },
+    handpan: { icon: '🪘', en: 'Handpan', ar: 'هاندبان' }
 };
 
 // ===== Booking Modal =====
