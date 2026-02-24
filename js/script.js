@@ -66,7 +66,7 @@ function setLang(l) {
     });
 
     document.querySelectorAll('.book-btn').forEach(btn => {
-        btn.textContent = l === 'ar' ? 'استفسر' : 'Inquire';
+        btn.textContent = l === 'ar' ? 'اكتشف' : 'Discover';
     });
 }
 
