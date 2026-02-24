@@ -138,15 +138,20 @@
 <body>
 
     <!-- Header -->
-    <header class="header" id="hdr" style="position:fixed;">
-        <a href="index.html" class="logo">SEVENTOR</a>
+    <header class="header pinned" id="hdr">
+        <div class="header-left">
+            <a href="index.html" class="logo" aria-label="SEVENTOR — Back to Home">
+                <img src="img/logo.png" alt="SEVENTOR" class="logo-icon">
+                <span class="logo-text">SEVENTOR</span>
+            </a>
+            <div class="lang-toggle">
+                <button class="lang-opt on" onclick="setLang('en')" data-l="en"
+                    aria-label="Switch to English">EN</button>
+                <button class="lang-opt" onclick="setLang('ar')" data-l="ar"
+                    aria-label="التبديل إلى العربية">عربي</button>
+            </div>
+        </div>
     </header>
-
-    <!-- Language Toggle -->
-    <div class="lang-toggle">
-        <button class="lang-opt on" onclick="setLang('en')" data-l="en" aria-label="Switch to English">EN</button>
-        <button class="lang-opt" onclick="setLang('ar')" data-l="ar" aria-label="التبديل إلى العربية">عربي</button>
-    </div>
 
     <main class="terms-page">
 
@@ -379,22 +384,23 @@
                 btn.classList.toggle('on', btn.dataset.l === lang);
             });
 
-            document.querySelectorAll('[data-en]').forEach(el => {
+            document.querySelectorAll('[data-' + lang + ']').forEach(el => {
                 const text = el.getAttribute('data-' + lang);
-                if (text) {
-                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-                        el.placeholder = text;
-                    } else {
-                        el.textContent = text;
-                    }
+                if (!text && text !== '') return;
+                // Skip elements that have child elements (like the contact <p> with <a> links)
+                if (el.children.length > 0) return;
+                if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                    el.placeholder = text;
+                } else {
+                    el.textContent = text;
                 }
             });
         }
 
-        // Header scroll effect
+        // Header scroll effect — always pinned on terms page
         window.addEventListener('scroll', () => {
             const hdr = document.getElementById('hdr');
-            if (hdr) hdr.classList.toggle('pinned', window.scrollY > 40);
+            if (hdr) hdr.classList.toggle('pinned', true);
         });
 
         // Apply saved language
