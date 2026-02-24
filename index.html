@@ -12,6 +12,8 @@
     <meta name="author" content="SEVENTOR">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
     <link rel="icon" href="img/logo.png">
+    <link rel="apple-touch-icon" href="img/logo.png">
+    <meta name="theme-color" content="#040F0B">
     <link rel="canonical" href="https://seventor.com/">
     <link rel="alternate" hreflang="en" href="https://seventor.com/">
     <link rel="alternate" hreflang="ar" href="https://seventor.com/">
@@ -41,7 +43,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Didact+Gothic&family=Outfit:wght@300;400;500&family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Cairo:wght@300;400;500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Didact+Gothic&family=Outfit:wght@300;400;500&family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;600;700&family=Cairo:wght@400;600;700&display=swap"
         rel="stylesheet">
 
     <!-- Stylesheet -->
@@ -55,7 +57,7 @@
         "name": "SEVENTOR",
         "alternateName": "سڤنتور",
         "description": "Dubai's premier luxury entertainment and events agency. We craft unforgettable experiences for five-star hotels, government entities, corporations, and VIP private clients.",
-        "url": "https://seventor.vercel.app",
+        "url": "https://seventor.com",
         "email": "info@seventor.com",
         "address": {
             "@type": "PostalAddress",
@@ -68,12 +70,63 @@
         },
         "serviceType": ["Entertainment Services", "Event Management", "Hotel Entertainment", "Corporate Events", "VIP Private Events", "Live Music Booking"],
         "knowsLanguage": ["en", "ar"],
-        "sameAs": []
+        "sameAs": ["https://www.instagram.com/seventor.ent"]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How do I book an artist or service?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Browse our talent section, choose the service you need, and click 'Book Now'. Fill in your event details and your request will be sent directly to us via WhatsApp."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What types of events do you serve?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We serve five-star hotels, government ceremonies, corporate events, luxury weddings, private parties, and VIP celebrations."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Are you officially licensed in Dubai?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We are in the final stages of obtaining our official license from Dubai's Department of Economy and Tourism (DET). Our team has years of professional experience in the entertainment industry."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What makes SEVENTOR different from other agencies?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "SEVENTOR was founded by professional musicians. We don't just manage talent — we are the talent. This gives us a deeper understanding of performance quality and the art of creating unforgettable moments."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What instruments and services are available?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "We offer live performances including Oud, Piano, Violin, Saxophone, Percussion, Handpan, Vocalists, and DJ sets, plus full event management services."
+                }
+            }
+        ]
     }
     </script>
 </head>
 
 <body>
+
+    <!-- Skip to Content -->
+    <a href="#about" class="skip-link">Skip to content</a>
 
     <!-- Preloader -->
     <div class="preloader" id="pre">
@@ -96,6 +149,7 @@
             <a href="#artists" onclick="closeMob()" data-en="Talent" data-ar="فنانونا">Talent</a>
             <!-- <a href="#showcase" onclick="closeMob()" data-en="Portfolio" data-ar="أعمالنا">Portfolio</a> -->
             <a href="#why" onclick="closeMob()" data-en="Why Us" data-ar="لماذا نحن">Why Us</a>
+            <a href="#faq" onclick="closeMob()" data-en="FAQ" data-ar="أسئلة شائعة">FAQ</a>
             <a href="#contact" onclick="closeMob()" data-en="Contact" data-ar="تواصل">Contact</a>
         </nav>
     </div>
@@ -121,6 +175,7 @@
             <li><a href="#artists" data-en="Talent" data-ar="فنانونا">Talent</a></li>
             <!-- <li><a href="#showcase" data-en="Portfolio" data-ar="أعمالنا">Portfolio</a></li> -->
             <li><a href="#why" data-en="Why Us" data-ar="لماذا نحن">Why Us</a></li>
+            <li><a href="#faq" data-en="FAQ" data-ar="أسئلة شائعة">FAQ</a></li>
             <li><a href="#contact" data-en="Contact" data-ar="تواصل">Contact</a></li>
         </ul>
         <button class="burger" onclick="openMob()" aria-label="Open navigation menu">
@@ -131,7 +186,7 @@
     <!-- ==================== HERO ==================== -->
     <section class="hero">
         <div class="hero-atm"></div>
-        <video class="hero-video" autoplay muted loop playsinline>
+        <video class="hero-video" autoplay muted loop playsinline preload="metadata">
             <source src="img/0216.mp4" type="video/mp4">
         </video>
         <div class="hero-lat"></div>
@@ -461,6 +516,97 @@
         </div>
     </section>
 
+    <!-- ==================== STORY ==================== -->
+    <section class="section-pad story-bg" id="story">
+        <div class="reveal">
+            <p class="section-overline" data-en="Our Story" data-ar="قصتنا">Our Story</p>
+            <h2 class="section-title" data-en="Built by Musicians" data-ar="صُنع على أيدي موسيقيين">Built by Musicians</h2>
+            <div class="ornament">
+                <div class="bar"></div>
+                <div class="gem"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+        <div class="story-content reveal">
+            <p class="story-text"
+                data-en="SEVENTOR wasn't born in a boardroom — it was born from the stage. We are musicians, performers, and artists who understand what it means to create a moment that moves people. Every event we craft carries the same passion and precision we bring to our own performances."
+                data-ar="سِڤَنتور لم تُولد في قاعة اجتماعات — بل وُلدت من على خشبة المسرح. نحن موسيقيون وعازفون وفنانون نفهم ما يعنيه أن تصنع لحظة تحرّك الناس. كل فعالية نصنعها تحمل نفس الشغف والإتقان الذي نحمله لعروضنا الخاصة.">
+                SEVENTOR wasn't born in a boardroom — it was born from the stage. We are musicians, performers, and artists who understand what it means to create a moment that moves people. Every event we craft carries the same passion and precision we bring to our own performances.</p>
+            <p class="story-text"
+                data-en="We're currently in the final stages of obtaining our official licensing from Dubai's Department of Economy and Tourism. This is just the beginning — and we're building something extraordinary, crafted with love, by artists, for the world."
+                data-ar="نحن حالياً في المراحل الأخيرة للحصول على التراخيص الرسمية من دائرة الاقتصاد والسياحة في دبي. هذه مجرد البداية — ونحن نبني شيئاً استثنائياً، صُنع بكل حب، من فنانين، للعالم.">
+                We're currently in the final stages of obtaining our official licensing from Dubai's Department of Economy and Tourism. This is just the beginning — and we're building something extraordinary, crafted with love, by artists, for the world.</p>
+            <div class="story-signature">
+                <span data-en="Crafted with ♡ by real musicians" data-ar="صُنع بكل ♡ على أيدي موسيقيين حقيقيين">Crafted with ♡ by real musicians</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FAQ ==================== -->
+    <section class="section-pad faq-bg" id="faq">
+        <div class="reveal">
+            <p class="section-overline" data-en="FAQ" data-ar="أسئلة شائعة">FAQ</p>
+            <h2 class="section-title" data-en="Frequently Asked Questions" data-ar="الأسئلة الشائعة">Frequently Asked Questions</h2>
+            <div class="ornament">
+                <div class="bar"></div>
+                <div class="gem"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+        <div class="faq-list reveal">
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    <span data-en="How do I book an artist or service?" data-ar="كيف أحجز فناناً أو خدمة؟">How do I book an artist or service?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p data-en="Simply browse our talent section, choose the service you need, and click 'Book Now'. Fill in your event details and your request will be sent directly to us via WhatsApp. We'll get back to you within hours to confirm your booking."
+                        data-ar="تصفّح قسم المواهب لدينا، اختر الخدمة التي تحتاجها، واضغط 'احجز الآن'. أدخل تفاصيل فعاليتك وسيُرسل طلبك إلينا مباشرة عبر واتساب. سنردّ عليك خلال ساعات لتأكيد حجزك.">Simply browse our talent section, choose the service you need, and click 'Book Now'. Fill in your event details and your request will be sent directly to us via WhatsApp. We'll get back to you within hours to confirm your booking.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    <span data-en="What types of events do you serve?" data-ar="ما أنواع الفعاليات التي تخدمونها؟">What types of events do you serve?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p data-en="We serve five-star hotels, government ceremonies, corporate events, luxury weddings, private parties, and VIP celebrations. Whether it's an intimate gathering or a grand gala, we tailor every performance to match the occasion."
+                        data-ar="نخدم الفنادق الخمس نجوم، والاحتفالات الحكومية، وفعاليات الشركات، وحفلات الزفاف الفاخرة، والحفلات الخاصة، واحتفالات كبار الشخصيات. سواء كانت جلسة حميمة أو حفلة كبرى، نصمّم كل عرض ليتناسب مع المناسبة.">We serve five-star hotels, government ceremonies, corporate events, luxury weddings, private parties, and VIP celebrations. Whether it's an intimate gathering or a grand gala, we tailor every performance to match the occasion.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    <span data-en="Are you officially licensed in Dubai?" data-ar="هل أنتم مرخّصون رسمياً في دبي؟">Are you officially licensed in Dubai?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p data-en="We are in the final stages of obtaining our official license from Dubai's Department of Economy and Tourism (DET). Our team has years of professional experience in the entertainment industry, and we're committed to full regulatory compliance."
+                        data-ar="نحن في المراحل الأخيرة للحصول على الترخيص الرسمي من دائرة الاقتصاد والسياحة في دبي (DET). فريقنا لديه سنوات من الخبرة المهنية في صناعة الترفيه، ونلتزم بالامتثال التنظيمي الكامل.">We are in the final stages of obtaining our official license from Dubai's Department of Economy and Tourism (DET). Our team has years of professional experience in the entertainment industry, and we're committed to full regulatory compliance.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    <span data-en="What makes SEVENTOR different from other agencies?" data-ar="ما الذي يميّز سِڤَنتور عن الوكالات الأخرى؟">What makes SEVENTOR different from other agencies?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p data-en="Unlike typical entertainment agencies, SEVENTOR was founded by professional musicians. We don't just manage talent — we are the talent. This gives us a deeper understanding of performance quality, sound, and the art of creating unforgettable moments."
+                        data-ar="على عكس وكالات الترفيه التقليدية، تأسست سِڤَنتور على أيدي موسيقيين محترفين. نحن لا ندير المواهب فحسب — نحن الموهبة ذاتها. هذا يمنحنا فهماً أعمق لجودة الأداء والصوت وفنّ صناعة اللحظات التي لا تُنسى.">Unlike typical entertainment agencies, SEVENTOR was founded by professional musicians. We don't just manage talent — we are the talent. This gives us a deeper understanding of performance quality, sound, and the art of creating unforgettable moments.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">
+                    <span data-en="What instruments and services are available?" data-ar="ما هي الآلات والخدمات المتاحة؟">What instruments and services are available?</span>
+                    <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                    <p data-en="We offer live performances including Oud, Piano, Violin, Saxophone, Percussion, Handpan, Vocalists, and DJ sets. We also provide full event management, from concept to final curtain, including production, sound, lighting, and logistics."
+                        data-ar="نقدّم عروضاً حية تشمل العود والبيانو والكمان والساكسفون والإيقاع والهاندبان والمغنّين وعروض الدي جي. كما نقدّم إدارة فعاليات متكاملة، من الفكرة حتى لحظة الختام، بما في ذلك الإنتاج والصوت والإضاءة واللوجستيات.">We offer live performances including Oud, Piano, Violin, Saxophone, Percussion, Handpan, Vocalists, and DJ sets. We also provide full event management, from concept to final curtain, including production, sound, lighting, and logistics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ==================== CONTACT ==================== -->
     <section class="section-pad contact-bg" id="contact">
         <div class="reveal">
@@ -481,7 +627,7 @@
             </div>
             <div class="contact-person-info">
                 <div class="contact-person-name">ALI YASER AL HARIK</div>
-                <div class="contact-person-alias">7EREK <span data-en="" data-ar="— حرك"></span></div>
+                <div class="contact-person-alias">7EREK <span data-en="" data-ar="— حَرَك"></span></div>
                 <div class="contact-person-role" data-en="Founder & Creative Director"
                     data-ar="المؤسس والمدير الإبداعي">Founder & Creative Director</div>
                 <a href="https://wa.me/971544117716?text=Hi%20Ali%2C%20I'm%20interested%20in%20working%20with%20SEVENTOR%20for%20an%20upcoming%20event.%20I'd%20love%20to%20discuss%20the%20details!"
@@ -510,10 +656,10 @@
     </footer>
 
     <!-- ==================== BOOKING MODAL ==================== -->
-    <div class="modal-overlay" id="bookingModal" role="dialog" aria-label="Book a service">
+    <div class="modal-overlay" id="bookingModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div class="modal-content">
             <button class="modal-close" onclick="closeBooking()" aria-label="Close booking form">✕</button>
-            <h3 class="modal-title" data-en="Book a Service" data-ar="احجز خدمة">Book a Service</h3>
+            <h3 class="modal-title" id="modalTitle" data-en="Book a Service" data-ar="احجز خدمة">Book a Service</h3>
             <p class="modal-subtitle" data-en="Fill in your details and send your booking request via WhatsApp."
                 data-ar="املأ بياناتك وأرسل طلب الحجز عبر واتساب.">Fill in your details and send your booking request
                 via WhatsApp.</p>
@@ -557,7 +703,7 @@
                 </div>
                 <div class="field">
                     <label class="field-label" data-en="Event Type" data-ar="نوع الفعالية">Event Type</label>
-                    <select class="field-select" id="bk-type">
+                    <select class="field-select" id="bk-type" required>
                         <option value="" data-en="Select event type" data-ar="اختر نوع الفعالية">Select event type
                         </option>
                         <option value="Hotel Event" data-en="Hotel Event" data-ar="فعالية فندقية">Hotel Event</option>
@@ -584,7 +730,7 @@
     </div>
 
     <!-- Script -->
-    <script src="js/script.js"></script>
+    <script src="js/script.js" defer></script>
 </body>
 
 </html>

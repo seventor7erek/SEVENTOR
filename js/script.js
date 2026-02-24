@@ -3,6 +3,9 @@
    script.js
    ============================================ */
 
+// ===== Config =====
+const WHATSAPP_NUMBER = '971544117716';
+
 // ===== Preloader =====
 window.addEventListener('load', () => {
     setTimeout(() => document.getElementById('pre').classList.add('done'), 2200);
@@ -11,7 +14,7 @@ window.addEventListener('load', () => {
 // ===== Sparkles =====
 (function initSparkles() {
     const container = document.getElementById('sparkles');
-    for (let i = 0; i < 35; i++) {
+    for (let i = 0; i < 20; i++) {
         const spark = document.createElement('div');
         spark.className = 'spark';
         spark.style.left = Math.random() * 100 + '%';
@@ -32,14 +35,11 @@ let lang = 'en';
 (function detectLang() {
     const saved = localStorage.getItem('seventor-lang');
     if (saved) {
-        // User previously chose a language — respect it
         lang = saved;
     } else {
-        // First visit — detect from browser
-        const browserLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+        const browserLang = (navigator.language || 'en').toLowerCase();
         lang = browserLang.startsWith('ar') ? 'ar' : 'en';
     }
-    // Apply after DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', () => setLang(lang));
     } else {
@@ -53,22 +53,18 @@ function setLang(l) {
     document.body.dir = l === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = l;
 
-    // Toggle ALL language button states (header + mobile overlay)
     document.querySelectorAll('.lang-opt').forEach(btn => {
         btn.classList.toggle('on', btn.dataset.l === l);
     });
 
-    // Update text content
     document.querySelectorAll('[data-' + l + ']').forEach(el => {
         el.textContent = el.getAttribute('data-' + l);
     });
 
-    // Update placeholders
     document.querySelectorAll('[data-' + l + '-ph]').forEach(el => {
         el.placeholder = el.getAttribute('data-' + l + '-ph');
     });
 
-    // Update Book Now buttons
     document.querySelectorAll('.book-btn').forEach(btn => {
         btn.textContent = l === 'ar' ? 'احجز الآن' : 'Book Now';
     });
@@ -101,15 +97,16 @@ const revealObserver = new IntersectionObserver(entries => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// ===== Smooth Scroll Links =====
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', e => {
+// ===== Smooth Scroll (Event Delegation) =====
+document.addEventListener('click', e => {
+    const anchor = e.target.closest('a[href^="#"]');
+    if (anchor) {
         e.preventDefault();
         const target = document.querySelector(anchor.getAttribute('href'));
         if (target) {
             target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-    });
+    }
 });
 
 // ===== Service Data =====
@@ -138,12 +135,27 @@ function openBooking(serviceKey) {
         hiddenInput.value = serviceKey;
     }
 
-    // Reset quantity to 1
+    // Reset quantity
     const qtyInput = document.getElementById('bk-qty');
     if (qtyInput) qtyInput.value = 1;
 
+    // Set min date to today
+    const dateInput = document.getElementById('bk-date');
+    if (dateInput) {
+        dateInput.min = new Date().toISOString().split('T')[0];
+    }
+
+    // Clear previous errors
+    clearFormErrors();
+
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
+
+    // Focus trap: focus first input
+    setTimeout(() => {
+        const firstInput = modal.querySelector('input:not([type="hidden"]), select, textarea');
+        if (firstInput) firstInput.focus();
+    }, 100);
 }
 
 function closeBooking() {
@@ -152,30 +164,115 @@ function closeBooking() {
     document.body.style.overflow = '';
 }
 
-// Close modal on overlay click
+// Close modal on overlay click or Escape
 document.addEventListener('click', e => {
-    const modal = document.getElementById('bookingModal');
-    if (e.target === modal) {
+    if (e.target === document.getElementById('bookingModal')) {
         closeBooking();
     }
 });
 
-// Close modal on Escape key
 document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
         closeBooking();
         closeMob();
     }
+
+    // Focus trap for modal
+    const modal = document.getElementById('bookingModal');
+    if (e.key === 'Tab' && modal.classList.contains('open')) {
+        const focusable = modal.querySelectorAll('input, select, textarea, button, [tabindex]:not([tabindex="-1"])');
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey) {
+            if (document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            }
+        } else {
+            if (document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
+            }
+        }
+    }
 });
+
+// ===== Form Validation =====
+function clearFormErrors() {
+    document.querySelectorAll('.field-error').forEach(el => el.classList.remove('visible'));
+    document.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+}
+
+function showFieldError(fieldId, messageEn, messageAr) {
+    const field = document.getElementById(fieldId);
+    if (!field) return;
+    field.classList.add('error');
+
+    let errorEl = field.parentElement.querySelector('.field-error');
+    if (!errorEl) {
+        errorEl = document.createElement('div');
+        errorEl.className = 'field-error';
+        field.parentElement.appendChild(errorEl);
+    }
+    errorEl.textContent = lang === 'ar' ? messageAr : messageEn;
+    errorEl.classList.add('visible');
+}
+
+function validateBookingForm() {
+    clearFormErrors();
+    let valid = true;
+
+    const name = document.getElementById('bk-name').value.trim();
+    if (name.length < 3) {
+        showFieldError('bk-name', 'Name must be at least 3 characters', 'الاسم يجب أن يكون 3 أحرف على الأقل');
+        valid = false;
+    }
+
+    const phone = document.getElementById('bk-phone').value.trim();
+    const phoneRegex = /^\+?[0-9\s\-]{7,15}$/;
+    if (!phoneRegex.test(phone)) {
+        showFieldError('bk-phone', 'Please enter a valid phone number', 'يرجى إدخال رقم هاتف صحيح');
+        valid = false;
+    }
+
+    const date = document.getElementById('bk-date').value;
+    if (date) {
+        const today = new Date().toISOString().split('T')[0];
+        if (date < today) {
+            showFieldError('bk-date', 'Event date must be in the future', 'يجب أن يكون تاريخ الفعالية في المستقبل');
+            valid = false;
+        }
+    }
+
+    const startTime = document.getElementById('bk-start').value;
+    const endTime = document.getElementById('bk-end').value;
+    if (startTime && endTime && startTime >= endTime) {
+        showFieldError('bk-end', 'End time must be after start time', 'يجب أن يكون وقت الانتهاء بعد وقت البدء');
+        valid = false;
+    }
+
+    const eventType = document.getElementById('bk-type').value;
+    if (!eventType) {
+        showFieldError('bk-type', 'Please select an event type', 'يرجى اختيار نوع الفعالية');
+        valid = false;
+    }
+
+    return valid;
+}
 
 // ===== Booking Form → WhatsApp =====
 function submitBookingForm(e) {
     e.preventDefault();
 
+    if (!validateBookingForm()) return;
+
     const serviceKey = document.getElementById('bookingServiceKey').value;
     const service = serviceData[serviceKey];
-    const serviceName = service ? service.en : serviceKey;
-    const serviceNameAr = service ? service.ar : '';
+    if (!service) return;
+
+    const serviceName = service.en;
+    const serviceNameAr = service.ar;
     const qty = document.getElementById('bk-qty').value || '1';
     const name = document.getElementById('bk-name').value.trim();
     const phone = document.getElementById('bk-phone').value.trim();
@@ -185,7 +282,7 @@ function submitBookingForm(e) {
     const eventType = document.getElementById('bk-type').value;
     const notes = document.getElementById('bk-notes').value.trim();
 
-    // Format the date nicely
+    // Format date
     let formattedDate = date;
     if (date) {
         const d = new Date(date + 'T00:00:00');
@@ -216,23 +313,24 @@ function submitBookingForm(e) {
     if (notes) msg += `📝 *Notes:* ${notes}\n`;
     msg += `\n_Sent from seventor.com_`;
 
-    // Open WhatsApp with pre-filled message
-    const waURL = 'https://wa.me/971544117716?text=' + encodeURIComponent(msg);
-    window.open(waURL, '_blank');
+    // Open WhatsApp
+    const waURL = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
+    const waWindow = window.open(waURL, '_blank');
 
-    // Visual feedback and reset
+    // Fallback if popup blocked
+    if (!waWindow) {
+        window.location.href = waURL;
+    }
+
+    // Visual feedback
     const btn = e.target.querySelector('.form-btn');
     const originalText = btn.textContent;
     btn.textContent = lang === 'ar' ? '✓ تم!' : '✓ Sent!';
-    btn.style.background = 'var(--emerald-light)';
-    btn.style.borderColor = 'var(--emerald-light)';
-    btn.style.color = 'var(--gold-light)';
+    btn.classList.add('success');
 
     setTimeout(() => {
         btn.textContent = originalText;
-        btn.style.background = '';
-        btn.style.borderColor = '';
-        btn.style.color = '';
+        btn.classList.remove('success');
         e.target.reset();
         closeBooking();
     }, 2000);
@@ -243,8 +341,32 @@ function openContactWhatsApp(e) {
     const msgEn = "Hi Ali, I'm interested in working with SEVENTOR for an upcoming event. I'd love to discuss the details!";
     const msgAr = "مرحبا علي، أنا مهتم بالتعاقد مع سِڤَنتور لفعالية قادمة. أحب نتناقش بالتفاصيل!";
     const msg = lang === 'ar' ? msgAr : msgEn;
-    const url = 'https://wa.me/971544117716?text=' + encodeURIComponent(msg);
+    const url = 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
     e.preventDefault();
-    window.open(url, '_blank');
+    const waWindow = window.open(url, '_blank');
+    if (!waWindow) {
+        window.location.href = url;
+    }
     return false;
 }
+
+// ===== FAQ Accordion =====
+document.addEventListener('click', e => {
+    const question = e.target.closest('.faq-question');
+    if (!question) return;
+
+    const item = question.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+
+    // Close all other items
+    document.querySelectorAll('.faq-item.open').forEach(openItem => {
+        if (openItem !== item) {
+            openItem.classList.remove('open');
+            openItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        }
+    });
+
+    // Toggle current
+    item.classList.toggle('open', !isOpen);
+    question.setAttribute('aria-expanded', !isOpen);
+});

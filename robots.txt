@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://seventor.vercel.app/sitemap.xml
+Sitemap: https://seventor.com/sitemap.xml
