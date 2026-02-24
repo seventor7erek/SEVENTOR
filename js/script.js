@@ -113,14 +113,14 @@ document.addEventListener('click', e => {
 
 // ===== Service Data =====
 const serviceData = {
-    oud: { icon: '🪕', en: 'Oud Performance', ar: 'عزف عود' },
-    piano: { icon: '🎹', en: 'Piano Performance', ar: 'عزف بيانو' },
-    percussion: { icon: '🥁', en: 'Percussion', ar: 'إيقاع' },
-    violin: { icon: '🎻', en: 'Violin Performance', ar: 'عزف كمان' },
-    saxophone: { icon: '🎷', en: 'Saxophone', ar: 'ساكسفون' },
-    vocalist: { icon: '🎤', en: 'Vocalist', ar: 'مغنّي' },
-    dj: { icon: '🎧', en: 'DJ', ar: 'دي جي' },
-    handpan: { icon: '🪘', en: 'Handpan', ar: 'هاندبان' }
+    oud: { icon: '<svg viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" fill="none"><path d="M8 12.5a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9zM11.5 16L20 7.5a2.12 2.12 0 0 0-3-3L8.5 13M14 6l4 4"/></svg>', en: 'Oud Performance', ar: 'عزف عود' },
+    piano: { icon: '<svg viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" fill="none"><path d="M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM6 5v14M10 5v14M14 5v14M18 5v14M8 5v8h-4M12 5v8h-4M16 5v8h-4"/></svg>', en: 'Piano Performance', ar: 'عزف بيانو' },
+    percussion: { icon: '<svg viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" fill="none"><ellipse cx="12" cy="7" rx="8" ry="3"/><path d="M4 7v10c0 1.7 3.6 3 8 3s8-1.3 8-3V7M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>', en: 'Percussion', ar: 'إيقاع' },
+    violin: { icon: '<svg viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" fill="none"><path d="M17 6.5A4.5 4.5 0 0 0 12.5 11c-1.5 0-2.5 1.5-2.5 3.5S11 18 11 18l-4 4-4-4 4-4s.5-2.5 2.5-2.5c2 0 3.5-1 3.5-2.5A4.5 4.5 0 0 1 17 4.5 2 2 0 0 1 19 6.5zM12.5 11L18 16.5M15 8l2 2"/></svg>', en: 'Violin Performance', ar: 'عزف كمان' },
+    saxophone: { icon: '<svg viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" fill="none"><path d="M12 5v4c0 1.7-1.3 3-3 3H7c-1.7 0-3 1.3-3 3v2c0 1.7 1.3 3 3 3h5c2.8 0 5-2.2 5-5v-6M12 5C12 3.3 13.3 2 15 2s3 1.3 3 3v6l-2 2"/></svg>', en: 'Saxophone', ar: 'ساكسفون' },
+    vocalist: { icon: '<svg viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" fill="none"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v1a7 7 0 0 0 14 0v-1M12 18v4M8 22h8"/></svg>', en: 'Vocalist', ar: 'مغنّي' },
+    dj: { icon: '<svg viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" fill="none"><path d="M3 12v-2a9 9 0 0 1 18 0v2M3 12h4v7H3zM17 12h4v7h-4z"/></svg>', en: 'DJ', ar: 'دي جي' },
+    handpan: { icon: '<svg viewBox="0 0 24 24" stroke-width="1.2" stroke="currentColor" fill="none"><ellipse cx="12" cy="12" rx="10" ry="5"/><path d="M2.5 11.5c1.5 3 5.5 5.5 9.5 5.5s8-2.5 9.5-5.5M12 10a2 2 0 1 0 0 4 2 2 0 0 0 0-4zM6 13.5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zM18 13.5a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>', en: 'Handpan', ar: 'هاندبان' }
 };
 
 // ===== Booking Modal =====
@@ -132,7 +132,7 @@ function openBooking(serviceKey) {
 
     const service = serviceData[serviceKey];
     if (service) {
-        iconEl.textContent = service.icon;
+        iconEl.innerHTML = service.icon;
         nameEl.textContent = lang === 'ar' ? service.ar : service.en;
         hiddenInput.value = serviceKey;
     }
