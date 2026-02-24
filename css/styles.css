@@ -774,10 +774,25 @@ body[dir="rtl"] .about-prose {
     opacity: 1;
 }
 
+.service-card:hover .service-icon-svg {
+    transform: scale(1.1) translateY(-4px);
+    stroke: var(--gold-light);
+    filter: drop-shadow(0 0 12px rgba(200, 169, 81, 0.4));
+}
+
 .service-icon {
     font-size: 2rem;
     margin-bottom: 22px;
     display: block;
+}
+
+.service-icon-svg {
+    width: 44px;
+    height: 44px;
+    margin: 0 auto 24px;
+    display: block;
+    stroke: var(--gold);
+    transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .service-name {
