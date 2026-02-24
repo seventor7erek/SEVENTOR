@@ -50,10 +50,10 @@
         .terms-section h2 {
             font-family: 'Playfair Display', serif;
             font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-            color: var(--emerald);
+            color: var(--gold);
             margin-bottom: 15px;
             padding-bottom: 8px;
-            border-bottom: 1px solid rgba(80, 200, 160, 0.15);
+            border-bottom: 1px solid rgba(200, 169, 81, 0.15);
         }
 
         .terms-section p,
@@ -99,7 +99,7 @@
         }
 
         .terms-back:hover {
-            color: var(--emerald);
+            color: var(--emerald-light);
         }
 
         /* RTL Arabic adjustments */
@@ -347,8 +347,9 @@
                     7EREK</span><br>
                 <span data-en="Dubai, United Arab Emirates" data-ar="دبي، دولة الإمارات العربية المتحدة">Dubai, United
                     Arab Emirates</span><br>
-                <a href="https://wa.me/971544117716" style="color: var(--emerald);" dir="ltr">+971 544 11 77 16</a><br>
-                <a href="mailto:info@seventor.com" style="color: var(--emerald);">info@seventor.com</a>
+                <a href="https://wa.me/971544117716" style="color: var(--emerald-light);" dir="ltr">+971 544 11 77
+                    16</a><br>
+                <a href="mailto:info@seventor.com" style="color: var(--emerald-light);">info@seventor.com</a>
             </p>
         </div>
 
@@ -393,7 +394,7 @@
         // Header scroll effect
         window.addEventListener('scroll', () => {
             const hdr = document.getElementById('hdr');
-            if (hdr) hdr.classList.toggle('scrolled', window.scrollY > 40);
+            if (hdr) hdr.classList.toggle('pinned', window.scrollY > 40);
         });
 
         // Apply saved language
