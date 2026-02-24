@@ -900,11 +900,13 @@ body[dir="rtl"] .service-text {
     position: absolute;
     inset: 0;
     z-index: 0;
-    transition: transform .6s cubic-bezier(.25, .46, .45, .94);
+    transition: transform 1.2s cubic-bezier(.25, .46, .45, .94), filter 1.2s ease;
+    filter: contrast(1.15) saturate(0.8) brightness(0.9) sepia(0.05);
 }
 
 .artist-card:hover .artist-photo img {
     transform: scale(1.08);
+    filter: contrast(1.2) saturate(0.95) brightness(1) sepia(0);
 }
 
 .artist-photo-icon {

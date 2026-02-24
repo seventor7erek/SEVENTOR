@@ -66,7 +66,7 @@ function setLang(l) {
     });
 
     document.querySelectorAll('.book-btn').forEach(btn => {
-        btn.textContent = l === 'ar' ? 'احجز الآن' : 'Book Now';
+        btn.textContent = l === 'ar' ? 'استفسر' : 'Inquire';
     });
 }
 
@@ -97,14 +97,28 @@ const revealObserver = new IntersectionObserver(entries => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-// ===== Smooth Scroll (Event Delegation) =====
+// ===== Smooth Scroll (Lenis) =====
+const lenis = new window.Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+});
+
+function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
 document.addEventListener('click', e => {
     const anchor = e.target.closest('a[href^="#"]');
     if (anchor) {
         e.preventDefault();
-        const target = document.querySelector(anchor.getAttribute('href'));
+        const targetAttr = anchor.getAttribute('href');
+        if (targetAttr === '#') return;
+        const target = document.querySelector(targetAttr);
         if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            lenis.scrollTo(target);
         }
     }
 });
