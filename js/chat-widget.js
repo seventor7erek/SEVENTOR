@@ -1,6 +1,6 @@
 /* ============================================
    SEVENTOR AI Concierge — Chat Widget
-   chat-widget.js
+   chat-widget.js (Mobile-Optimized v2)
    ============================================ */
 
 (function () {
@@ -9,12 +9,13 @@
   // ===== State =====
   let isOpen = false;
   let isLoading = false;
-  let messages = [
-    {
-      role: 'assistant',
-      content: 'Welcome to SEVENTOR. I am your AI Concierge. How may I craft an extraordinary experience for you today?',
-    },
-  ];
+  let touchStartY = 0;
+  let messages = [];
+
+  const welcomeMsg = {
+    en: 'Welcome to SEVENTOR. I am your AI Concierge. How may I craft an extraordinary experience for you today?',
+    ar: 'أهلاً بك في سِڤَنتور. أنا المساعد الذكي الخاص بك. كيف يمكنني أن أصنع لك تجربة استثنائية اليوم؟',
+  };
 
   const quickActions = [
     { en: 'Plan an Event', ar: 'خطط لفعالية' },
@@ -24,9 +25,26 @@
     { en: 'Get a Quote', ar: 'طلب عرض سعر' },
   ];
 
+  const placeholders = {
+    en: 'Type your message...',
+    ar: 'اكتب رسالتك...',
+  };
+
   // ===== Detect language from page =====
   function getLang() {
     return typeof lang !== 'undefined' ? lang : 'en';
+  }
+
+  function isRTL() {
+    return document.body.getAttribute('dir') === 'rtl' || getLang() === 'ar';
+  }
+
+  // ===== Initialize welcome message =====
+  function initMessages() {
+    var l = getLang();
+    messages = [
+      { role: 'assistant', content: welcomeMsg[l] || welcomeMsg.en },
+    ];
   }
 
   // ===== Inject CSS =====
@@ -52,7 +70,9 @@
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         animation: stFabGlow 3s ease-in-out infinite;
         box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+        -webkit-tap-highlight-color: transparent;
       }
+      body[dir="rtl"] .st-chat-fab { right: auto; left: 24px; }
       .st-chat-fab:hover { transform: scale(1.08); }
       .st-chat-fab:active { transform: scale(0.95); }
       .st-chat-fab svg { width: 24px; height: 24px; color: #040F0B; fill: none; stroke: currentColor; stroke-width: 2; }
@@ -98,6 +118,7 @@
         transition: transform 0.35s cubic-bezier(0.32, 0.72, 0, 1), opacity 0.35s ease;
         pointer-events: none;
       }
+      body[dir="rtl"] .st-chat-panel { right: auto; left: 24px; }
       .st-chat-panel.open {
         transform: translateY(0) scale(1);
         opacity: 1;
@@ -106,19 +127,32 @@
 
       /* --- Mobile Bottom Sheet --- */
       @media (max-width: 640px) {
+        .st-chat-fab { bottom: 20px; right: 20px; }
+        body[dir="rtl"] .st-chat-fab { right: auto; left: 20px; }
+
         .st-chat-panel {
           bottom: 0;
           right: 0;
           left: 0;
           width: 100%;
-          height: 90vh;
+          height: 90dvh;
+          height: 90vh; /* fallback */
           border-radius: 24px 24px 0 0;
           border-bottom: none;
           transform: translateY(100%);
           opacity: 1;
         }
+        body[dir="rtl"] .st-chat-panel { right: 0; left: 0; }
         .st-chat-panel.open {
           transform: translateY(0);
+        }
+
+        /* Safe area for iPhone notch/home indicator */
+        .st-chat-input-area {
+          padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px)) !important;
+        }
+        .st-chat-footer {
+          padding-bottom: calc(4px + env(safe-area-inset-bottom, 0px)) !important;
         }
       }
 
@@ -127,6 +161,8 @@
         display: none;
         justify-content: center;
         padding: 10px 0 4px;
+        cursor: grab;
+        touch-action: none;
       }
       .st-swipe-bar span {
         width: 40px;
@@ -145,6 +181,7 @@
         gap: 12px;
         padding: 16px 16px 12px;
         border-bottom: 1px solid rgba(200, 169, 81, 0.06);
+        flex-shrink: 0;
       }
       .st-chat-avatar {
         width: 36px;
@@ -201,6 +238,7 @@
         cursor: pointer;
         transition: background 0.2s;
         flex-shrink: 0;
+        -webkit-tap-highlight-color: transparent;
       }
       .st-chat-close:hover { background: rgba(200, 169, 81, 0.12); }
       .st-chat-close svg { width: 14px; height: 14px; stroke: rgba(249, 247, 241, 0.5); fill: none; stroke-width: 2; }
@@ -214,6 +252,7 @@
         flex-shrink: 0;
         -ms-overflow-style: none;
         scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
       }
       .st-quick-actions::-webkit-scrollbar { display: none; }
       .st-quick-btn {
@@ -229,6 +268,7 @@
         cursor: pointer;
         transition: background 0.2s, color 0.2s, border-color 0.2s;
         white-space: nowrap;
+        -webkit-tap-highlight-color: transparent;
       }
       .st-quick-btn:hover {
         background: rgba(200, 169, 81, 0.1);
@@ -248,6 +288,8 @@
         display: flex;
         flex-direction: column;
         gap: 12px;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
       }
       .st-chat-messages::-webkit-scrollbar { width: 4px; }
       .st-chat-messages::-webkit-scrollbar-track { background: transparent; }
@@ -259,10 +301,17 @@
         border-radius: 14px;
         font-family: var(--fb), sans-serif;
         font-size: 13px;
-        line-height: 1.55;
+        line-height: 1.65;
         animation: stMsgIn 0.3s ease;
         word-wrap: break-word;
+        overflow-wrap: break-word;
       }
+      /* RTL message text alignment */
+      body[dir="rtl"] .st-msg {
+        font-family: var(--fp-ar), 'Tajawal', sans-serif;
+        text-align: right;
+      }
+
       @keyframes stMsgIn {
         from { opacity: 0; transform: translateY(8px); }
         to { opacity: 1; transform: translateY(0); }
@@ -275,12 +324,21 @@
         color: #F9F7F1;
         border-bottom-right-radius: 4px;
       }
+      body[dir="rtl"] .st-msg-user {
+        border-bottom-right-radius: 14px;
+        border-bottom-left-radius: 4px;
+      }
+
       .st-msg-assistant {
         align-self: flex-start;
         background: rgba(13, 59, 46, 0.35);
         border: 1px solid rgba(26, 107, 83, 0.1);
         color: rgba(249, 247, 241, 0.9);
         border-bottom-left-radius: 4px;
+      }
+      body[dir="rtl"] .st-msg-assistant {
+        border-bottom-left-radius: 14px;
+        border-bottom-right-radius: 4px;
       }
 
       /* --- Typing indicator --- */
@@ -315,6 +373,7 @@
         gap: 8px;
         padding: 12px 16px;
         border-top: 1px solid rgba(200, 169, 81, 0.06);
+        flex-shrink: 0;
       }
       .st-chat-input {
         flex: 1;
@@ -324,15 +383,22 @@
         padding: 10px 14px;
         color: #F9F7F1;
         font-family: var(--fb), sans-serif;
-        font-size: 13px;
+        font-size: 16px; /* Prevents iOS zoom on focus */
         outline: none;
         transition: border-color 0.2s;
         resize: none;
         min-height: 40px;
         max-height: 100px;
+        -webkit-appearance: none;
+        appearance: none;
+      }
+      body[dir="rtl"] .st-chat-input {
+        font-family: var(--fp-ar), 'Tajawal', sans-serif;
+        text-align: right;
       }
       .st-chat-input::placeholder { color: rgba(249, 247, 241, 0.25); }
       .st-chat-input:focus { border-color: rgba(200, 169, 81, 0.25); }
+
       .st-chat-send {
         width: 40px;
         height: 40px;
@@ -345,6 +411,7 @@
         cursor: pointer;
         transition: background 0.2s, transform 0.15s;
         flex-shrink: 0;
+        -webkit-tap-highlight-color: transparent;
       }
       .st-chat-send:hover { background: linear-gradient(135deg, rgba(200, 169, 81, 0.3), rgba(200, 169, 81, 0.15)); }
       .st-chat-send:active { transform: scale(0.92); }
@@ -369,6 +436,7 @@
         font-size: 9px;
         color: rgba(249, 247, 241, 0.2);
         letter-spacing: 0.08em;
+        flex-shrink: 0;
       }
     `;
     document.head.appendChild(style);
@@ -398,7 +466,7 @@
     panel.className = 'st-chat-panel';
     panel.id = 'stChatPanel';
     panel.innerHTML = `
-      <div class="st-swipe-bar"><span></span></div>
+      <div class="st-swipe-bar" id="stSwipeBar"><span></span></div>
       <div class="st-chat-header">
         <div class="st-chat-avatar">
           <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
@@ -422,7 +490,7 @@
       <div class="st-chat-messages" id="stChatMessages"></div>
       <div class="st-chat-error" id="stChatError" style="display:none;"></div>
       <div class="st-chat-input-area">
-        <input type="text" class="st-chat-input" id="stChatInput" placeholder="Type your message..." autocomplete="off">
+        <input type="text" class="st-chat-input" id="stChatInput" placeholder="Type your message..." autocomplete="off" enterkeyhint="send">
         <button class="st-chat-send" id="stChatSend" aria-label="Send message">
           <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
             <path d="m5 12 7-7 7 7"/><path d="M12 19V5"/>
@@ -451,11 +519,78 @@
       if (e.key === 'Escape' && isOpen) closeChat();
     });
 
+    // Swipe-to-close on mobile
+    setupSwipeToClose();
+
+    // iOS keyboard handling
+    setupKeyboardHandling();
+
     // Build quick actions
     buildQuickActions();
 
     // Render initial message
     renderMessages();
+  }
+
+  // ===== Swipe to Close (Mobile) =====
+  function setupSwipeToClose() {
+    var swipeBar = document.getElementById('stSwipeBar');
+    if (!swipeBar) return;
+
+    swipeBar.addEventListener('touchstart', function (e) {
+      touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    swipeBar.addEventListener('touchmove', function (e) {
+      var diff = e.touches[0].clientY - touchStartY;
+      if (diff > 0) {
+        var panel = document.getElementById('stChatPanel');
+        panel.style.transition = 'none';
+        panel.style.transform = 'translateY(' + diff + 'px)';
+      }
+    }, { passive: true });
+
+    swipeBar.addEventListener('touchend', function (e) {
+      var panel = document.getElementById('stChatPanel');
+      var diff = e.changedTouches[0].clientY - touchStartY;
+      panel.style.transition = '';
+      if (diff > 100) {
+        closeChat();
+      } else {
+        panel.style.transform = '';
+        panel.classList.add('open');
+      }
+    }, { passive: true });
+  }
+
+  // ===== iOS Keyboard Handling =====
+  function setupKeyboardHandling() {
+    if (!window.visualViewport) return;
+
+    window.visualViewport.addEventListener('resize', function () {
+      if (!isOpen) return;
+      var panel = document.getElementById('stChatPanel');
+      if (!panel) return;
+
+      // On mobile, when keyboard opens, adjust panel height
+      if (window.innerWidth <= 640) {
+        var vvh = window.visualViewport.height;
+        panel.style.height = vvh + 'px';
+
+        // Scroll messages to bottom
+        var msgs = document.getElementById('stChatMessages');
+        if (msgs) msgs.scrollTop = msgs.scrollHeight;
+      }
+    });
+
+    window.visualViewport.addEventListener('scroll', function () {
+      if (!isOpen || window.innerWidth > 640) return;
+      // Keep panel anchored to visual viewport
+      var panel = document.getElementById('stChatPanel');
+      if (panel) {
+        panel.style.bottom = '0px';
+      }
+    });
   }
 
   // ===== Quick Actions =====
@@ -481,25 +616,44 @@
     document.getElementById('stChatBackdrop').classList.add('open');
     document.getElementById('stChatPanel').classList.add('open');
 
+    // Update placeholder for current language
+    var l = getLang();
+    document.getElementById('stChatInput').placeholder = placeholders[l] || placeholders.en;
+
     // Lock body scroll on mobile
     if (window.innerWidth <= 640) {
       document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+      document.body.style.top = '-' + window.scrollY + 'px';
     }
 
     // Update quick action labels for current language
     buildQuickActions();
 
-    // Focus input
+    // Focus input after animation
     setTimeout(function () {
       document.getElementById('stChatInput').focus();
-    }, 350);
+    }, 400);
   }
 
   function closeChat() {
     isOpen = false;
+    var panel = document.getElementById('stChatPanel');
+    panel.style.transform = '';
+    panel.style.height = '';
     document.getElementById('stChatBackdrop').classList.remove('open');
-    document.getElementById('stChatPanel').classList.remove('open');
+    panel.classList.remove('open');
+
+    // Restore body scroll
+    var scrollY = document.body.style.top;
     document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.width = '';
+    document.body.style.top = '';
+    if (scrollY) {
+      window.scrollTo(0, parseInt(scrollY || '0') * -1);
+    }
 
     setTimeout(function () {
       document.getElementById('stChatFab').style.display = 'flex';
@@ -599,6 +753,7 @@
 
   // ===== Initialize =====
   function init() {
+    initMessages();
     injectStyles();
     buildWidget();
   }
