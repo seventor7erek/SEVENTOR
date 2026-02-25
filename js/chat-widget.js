@@ -198,7 +198,7 @@
       .st-chat-avatar svg { width: 16px; height: 16px; stroke: #C8A951; fill: none; stroke-width: 1.5; }
       .st-chat-header-info { flex: 1; min-width: 0; }
       .st-chat-header-title {
-        font-family: var(--fc), 'Georgia', serif;
+        font-family: 'Playfair Display', 'Georgia', serif;
         font-size: 14px;
         font-weight: 500;
         color: #C8A951;
@@ -222,8 +222,8 @@
         50% { box-shadow: 0 0 0 5px rgba(26, 107, 83, 0); }
       }
       .st-chat-status-text {
-        font-family: var(--fb), sans-serif;
-        font-size: 10px;
+        font-family: 'Outfit', 'Helvetica Neue', sans-serif;
+        font-size: 11px;
         color: rgba(249, 247, 241, 0.4);
         letter-spacing: 0.06em;
       }
@@ -263,8 +263,8 @@
         border: 1px solid rgba(200, 169, 81, 0.12);
         background: rgba(200, 169, 81, 0.04);
         color: rgba(200, 169, 81, 0.7);
-        font-family: var(--fb), sans-serif;
-        font-size: 11px;
+        font-family: 'Outfit', 'Helvetica Neue', sans-serif;
+        font-size: 12px;
         letter-spacing: 0.04em;
         cursor: pointer;
         transition: background 0.2s, color 0.2s, border-color 0.2s;
@@ -300,17 +300,18 @@
         max-width: 85%;
         padding: 10px 14px;
         border-radius: 14px;
-        font-family: var(--fb), sans-serif;
-        font-size: 13px;
-        line-height: 1.65;
+        font-family: 'Outfit', 'Helvetica Neue', sans-serif;
+        font-size: 14px;
+        line-height: 1.6;
         animation: stMsgIn 0.3s ease;
         word-wrap: break-word;
         overflow-wrap: break-word;
       }
       /* RTL message text alignment */
       body[dir="rtl"] .st-msg {
-        font-family: var(--fp-ar), 'Tajawal', sans-serif;
+        font-family: 'Tajawal', 'Tahoma', sans-serif;
         text-align: right;
+        font-size: 15px;
       }
 
       @keyframes stMsgIn {
@@ -383,8 +384,8 @@
         border-radius: 12px;
         padding: 10px 14px;
         color: #F9F7F1;
-        font-family: var(--fb), sans-serif;
-        font-size: 16px; /* Prevents iOS zoom on focus */
+        font-family: 'Outfit', 'Helvetica Neue', sans-serif;
+        font-size: 16px;
         outline: none;
         transition: border-color 0.2s;
         resize: none;
@@ -394,8 +395,9 @@
         appearance: none;
       }
       body[dir="rtl"] .st-chat-input {
-        font-family: var(--fp-ar), 'Tajawal', sans-serif;
+        font-family: 'Tajawal', 'Tahoma', sans-serif;
         text-align: right;
+        font-size: 16px;
       }
       .st-chat-input::placeholder { color: rgba(249, 247, 241, 0.25); }
       .st-chat-input:focus { border-color: rgba(200, 169, 81, 0.25); }
@@ -423,7 +425,7 @@
       .st-chat-error {
         padding: 0 16px 4px;
         text-align: center;
-        font-family: var(--fb), sans-serif;
+        font-family: 'Outfit', 'Helvetica Neue', sans-serif;
         font-size: 11px;
         color: #e74c3c;
         opacity: 0.8;
@@ -433,8 +435,8 @@
       .st-chat-footer {
         text-align: center;
         padding: 4px 0 8px;
-        font-family: var(--fb), sans-serif;
-        font-size: 9px;
+        font-family: 'Outfit', 'Helvetica Neue', sans-serif;
+        font-size: 10px;
         color: rgba(249, 247, 241, 0.2);
         letter-spacing: 0.08em;
         flex-shrink: 0;
