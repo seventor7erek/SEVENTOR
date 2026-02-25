@@ -1,0 +1,213 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --emerald-abyss: #040F0B;
+  --emerald-deep: #071F19;
+  --emerald: #0D3B2E;
+  --emerald-rich: #12503E;
+  --emerald-light: #1A6B53;
+  --gold: #C8A951;
+  --gold-warm: #D4B96A;
+  --gold-light: #E4D08E;
+  --gold-dark: #A08636;
+  --gold-muted: rgba(200, 169, 81, 0.6);
+  --diamond: #F9F7F1;
+  --black-luxe: #0A0A08;
+
+  --background: var(--emerald-abyss);
+  --foreground: var(--diamond);
+  --card: var(--emerald-deep);
+  --card-foreground: var(--diamond);
+  --popover: var(--emerald-deep);
+  --popover-foreground: var(--diamond);
+  --primary: var(--gold);
+  --primary-foreground: var(--emerald-abyss);
+  --secondary: var(--emerald);
+  --secondary-foreground: var(--diamond);
+  --muted: var(--emerald-deep);
+  --muted-foreground: rgba(249, 247, 241, 0.55);
+  --accent: var(--gold-dark);
+  --accent-foreground: var(--diamond);
+  --destructive: #e74c3c;
+  --destructive-foreground: var(--diamond);
+  --border: rgba(200, 169, 81, 0.1);
+  --input: rgba(200, 169, 81, 0.15);
+  --ring: var(--gold);
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius: var(--radius);
+
+  --color-emerald-abyss: #040F0B;
+  --color-emerald-deep: #071F19;
+  --color-emerald: #0D3B2E;
+  --color-emerald-rich: #12503E;
+  --color-emerald-light: #1A6B53;
+  --color-gold: #C8A951;
+  --color-gold-warm: #D4B96A;
+  --color-gold-light: #E4D08E;
+  --color-gold-dark: #A08636;
+  --color-diamond: #F9F7F1;
+  --color-black-luxe: #0A0A08;
+
+  --font-sans: var(--font-outfit);
+  --font-serif: var(--font-playfair-display);
+  --font-body: var(--font-cormorant-garamond);
+}
+
+* {
+  @apply border-border;
+}
+
+body {
+  @apply bg-background text-foreground antialiased;
+}
+
+/* Hide scrollbar for quick actions */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* font-body utility */
+.font-body {
+  font-family: var(--font-cormorant-garamond), Georgia, serif;
+}
+
+/* Custom scrollbar for the chat */
+.chat-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.chat-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.chat-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(200, 169, 81, 0.2);
+  border-radius: 2px;
+}
+.chat-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(200, 169, 81, 0.4);
+}
+
+/* Typing indicator animation */
+@keyframes typingDot {
+  0%, 60%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.typing-dot:nth-child(1) { animation: typingDot 1.4s ease-in-out infinite; }
+.typing-dot:nth-child(2) { animation: typingDot 1.4s ease-in-out 0.2s infinite; }
+.typing-dot:nth-child(3) { animation: typingDot 1.4s ease-in-out 0.4s infinite; }
+
+/* Pulse animation for online indicator */
+@keyframes pulse-gold {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(200, 169, 81, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(200, 169, 81, 0);
+  }
+}
+
+.pulse-gold {
+  animation: pulse-gold 2s ease-in-out infinite;
+}
+
+/* FAB glow */
+@keyframes fab-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(200, 169, 81, 0.2), 0 0 40px rgba(200, 169, 81, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(200, 169, 81, 0.35), 0 0 50px rgba(200, 169, 81, 0.15);
+  }
+}
+
+.fab-glow {
+  animation: fab-glow 3s ease-in-out infinite;
+}
+
+/* Bottom sheet slide animation */
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+.slide-up {
+  animation: slideUp 0.4s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+.slide-down {
+  animation: slideDown 0.3s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+/* Chat panel fade in */
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.panel-in {
+  animation: panelIn 0.35s cubic-bezier(0.32, 0.72, 0, 1) forwards;
+}
+
+/* Noise overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
