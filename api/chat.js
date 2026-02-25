@@ -1,5 +1,3 @@
-import { NextRequest, NextResponse } from "next/server"
-
 const SYSTEM_PROMPT = `You are the SEVENTOR AI Concierge — an ultra-luxury event planning assistant for SEVENTOR, a prestigious Dubai-based entertainment and events agency.
 
 Your personality:
@@ -21,40 +19,46 @@ Your approach:
 - Be knowledgeable about Dubai venues, cultural nuances, and luxury event standards.
 - Keep responses concise but elegant — no walls of text.
 
-Remember: You represent the pinnacle of luxury event services. Every interaction should feel like a five-star concierge experience.`
+Available Services at SEVENTOR:
+- Oud Performance (Traditional & fusion)
+- Piano Performance (Classical, jazz & contemporary)
+- Percussion (Tabla, darbuka & percussion ensembles)
+- Violin Performance (Solo & ensemble)
+- Saxophone (Smooth jazz & live saxophone)
+- Vocalist (Arabic, international & multilingual)
+- DJ (Deep house, lounge, Afro & party sets)
+- Handpan (Ambient & relaxing melodies)
+- Full Event Management (Concept to execution)
 
-export async function POST(req: NextRequest) {
+Remember: You represent the pinnacle of luxury event services. Every interaction should feel like a five-star concierge experience.`;
+
+export default async function handler(req, res) {
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
+
   try {
-    const apiKey = process.env.GEMINI_API_KEY
+    const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
-      return NextResponse.json(
-        { error: "API key not configured on server." },
-        { status: 500 }
-      )
+      return res.status(500).json({ error: 'API key not configured on server.' });
     }
 
-    const { messages } = await req.json()
+    const { messages } = req.body;
 
     if (!messages || !Array.isArray(messages)) {
-      return NextResponse.json(
-        { error: "Invalid request body." },
-        { status: 400 }
-      )
+      return res.status(400).json({ error: 'Invalid request body.' });
     }
 
-    // Convert to Gemini format
-    const contents = messages.map(
-      (msg: { role: string; content: string }) => ({
-        role: msg.role === "user" ? "user" : "model",
-        parts: [{ text: msg.content }],
-      })
-    )
+    const contents = messages.map((msg) => ({
+      role: msg.role === 'user' ? 'user' : 'model',
+      parts: [{ text: msg.content }],
+    }));
 
     const response = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
       {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           systemInstruction: {
             parts: [{ text: SYSTEM_PROMPT }],
@@ -67,28 +71,22 @@ export async function POST(req: NextRequest) {
           },
         }),
       }
-    )
+    );
 
     if (!response.ok) {
-      const errorData = await response.text()
-      console.error("Gemini API error:", errorData)
-      return NextResponse.json(
-        { error: `Gemini API Error: ${response.status}` },
-        { status: response.status }
-      )
+      const errorData = await response.text();
+      console.error('Gemini API error:', errorData);
+      return res.status(response.status).json({ error: `Gemini API Error: ${response.status}` });
     }
 
-    const data = await response.json()
+    const data = await response.json();
     const aiText =
       data?.candidates?.[0]?.content?.parts?.[0]?.text ||
-      "I apologize, I was unable to process that request. Please try again."
+      'I apologize, I was unable to process that request. Please try again.';
 
-    return NextResponse.json({ content: aiText })
+    return res.status(200).json({ content: aiText });
   } catch (error) {
-    console.error("Chat API error:", error)
-    return NextResponse.json(
-      { error: "An unexpected error occurred." },
-      { status: 500 }
-    )
+    console.error('Chat API error:', error);
+    return res.status(500).json({ error: 'An unexpected error occurred.' });
   }
 }
