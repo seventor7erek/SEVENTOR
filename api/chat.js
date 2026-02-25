@@ -33,14 +33,24 @@ Available Services at SEVENTOR:
 Remember: You represent the pinnacle of luxury event services. Every interaction should feel like a five-star concierge experience.`;
 
 export default async function handler(req, res) {
+  // Allow CORS
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+
+  if (req.method === 'OPTIONS') {
+    return res.status(200).end();
+  }
+
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
   try {
-    const apiKey = process.env.OPENAI_API_KEY;
+    const apiKey = process.env.GEMINI_API_KEY;
     if (!apiKey) {
-      return res.status(500).json({ error: 'API key not configured on server.' });
+      console.error('GEMINI_API_KEY is not set in environment variables');
+      return res.status(500).json({ error: 'API key not configured. Please set GEMINI_API_KEY in Vercel Environment Variables.' });
     }
 
     const { messages } = req.body;
@@ -49,43 +59,48 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Invalid request body.' });
     }
 
-    // Build OpenAI messages format
-    const openaiMessages = [
-      { role: 'system', content: SYSTEM_PROMPT },
-      ...messages.map((msg) => ({
-        role: msg.role === 'user' ? 'user' : 'assistant',
-        content: msg.content,
-      })),
-    ];
+    const contents = messages.map((msg) => ({
+      role: msg.role === 'user' ? 'user' : 'model',
+      parts: [{ text: msg.content }],
+    }));
 
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model: 'gpt-4o-mini',
-        messages: openaiMessages,
-        temperature: 0.8,
-        max_tokens: 1024,
-      }),
-    });
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          systemInstruction: {
+            parts: [{ text: SYSTEM_PROMPT }],
+          },
+          contents,
+          generationConfig: {
+            temperature: 0.8,
+            maxOutputTokens: 1024,
+            topP: 0.95,
+          },
+        }),
+      }
+    );
 
     if (!response.ok) {
       const errorData = await response.text();
-      console.error('OpenAI API error:', errorData);
-      return res.status(response.status).json({ error: `OpenAI API Error: ${response.status}` });
+      console.error('Gemini API error status:', response.status);
+      console.error('Gemini API error body:', errorData);
+      return res.status(response.status).json({
+        error: `Gemini API Error: ${response.status}`,
+        details: errorData,
+      });
     }
 
     const data = await response.json();
     const aiText =
-      data?.choices?.[0]?.message?.content ||
+      data?.candidates?.[0]?.content?.parts?.[0]?.text ||
       'I apologize, I was unable to process that request. Please try again.';
 
     return res.status(200).json({ content: aiText });
   } catch (error) {
     console.error('Chat API error:', error);
-    return res.status(500).json({ error: 'An unexpected error occurred.' });
+    return res.status(500).json({ error: 'An unexpected error occurred: ' + error.message });
   }
 }
