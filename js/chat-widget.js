@@ -131,13 +131,13 @@
         body[dir="rtl"] .st-chat-fab { right: auto; left: 20px; }
 
         .st-chat-panel {
+          top: 10vh;
           bottom: 0;
           right: 0;
           left: 0;
           width: 100%;
-          height: 90%;
-          max-height: 90dvh;
-          max-height: 90vh; /* fallback */
+          height: auto;
+          max-height: none;
           border-radius: 24px 24px 0 0;
           border-bottom: none;
           transform: translateY(100%);
@@ -566,34 +566,18 @@
 
   // ===== iOS Keyboard Handling =====
   function setupKeyboardHandling() {
-    if (!window.visualViewport) return;
-
-    var initialVVHeight = window.visualViewport.height;
-
-    window.visualViewport.addEventListener('resize', function () {
-      if (!isOpen || window.innerWidth > 640) return;
-      var panel = document.getElementById('stChatPanel');
-      if (!panel) return;
-
-      var currentVVH = window.visualViewport.height;
-      var keyboardOpen = currentVVH < initialVVHeight - 50;
-
-      if (keyboardOpen) {
-        // Keyboard is open — shrink panel to fit
-        panel.style.height = currentVVH + 'px';
-        panel.style.maxHeight = currentVVH + 'px';
-      } else {
-        // Keyboard closed — reset to CSS defaults
-        panel.style.height = '';
-        panel.style.maxHeight = '';
-      }
-
-      // Scroll messages to bottom
-      var msgs = document.getElementById('stChatMessages');
-      if (msgs) {
-        setTimeout(function () { msgs.scrollTop = msgs.scrollHeight; }, 100);
-      }
-    });
+    // No JS height manipulation needed.
+    // Panel uses top/bottom insets so the browser handles keyboard automatically.
+    // We only scroll messages to bottom when input is focused.
+    var chatInput = document.getElementById('stChatInput');
+    if (chatInput) {
+      chatInput.addEventListener('focus', function () {
+        setTimeout(function () {
+          var msgs = document.getElementById('stChatMessages');
+          if (msgs) msgs.scrollTop = msgs.scrollHeight;
+        }, 300);
+      });
+    }
   }
 
   // ===== Quick Actions =====
@@ -625,10 +609,9 @@
 
     // Lock body scroll on mobile
     if (window.innerWidth <= 640) {
+      document.documentElement.style.overflow = 'hidden';
       document.body.style.overflow = 'hidden';
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
-      document.body.style.top = '-' + window.scrollY + 'px';
+      document.body.style.touchAction = 'none';
     }
 
     // Update quick action labels for current language
@@ -644,19 +627,13 @@
     isOpen = false;
     var panel = document.getElementById('stChatPanel');
     panel.style.transform = '';
-    panel.style.height = '';
     document.getElementById('stChatBackdrop').classList.remove('open');
     panel.classList.remove('open');
 
     // Restore body scroll
-    var scrollY = document.body.style.top;
+    document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
-    document.body.style.position = '';
-    document.body.style.width = '';
-    document.body.style.top = '';
-    if (scrollY) {
-      window.scrollTo(0, parseInt(scrollY || '0') * -1);
-    }
+    document.body.style.touchAction = '';
 
     setTimeout(function () {
       document.getElementById('stChatFab').style.display = 'flex';
