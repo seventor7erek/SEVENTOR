@@ -38,7 +38,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const apiKey = process.env.GEMINI_API_KEY;
+    const apiKey = process.env.OPENAI_API_KEY;
     if (!apiKey) {
       return res.status(500).json({ error: 'API key not configured on server.' });
     }
@@ -49,39 +49,38 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Invalid request body.' });
     }
 
-    const contents = messages.map((msg) => ({
-      role: msg.role === 'user' ? 'user' : 'model',
-      parts: [{ text: msg.content }],
-    }));
+    // Build OpenAI messages format
+    const openaiMessages = [
+      { role: 'system', content: SYSTEM_PROMPT },
+      ...messages.map((msg) => ({
+        role: msg.role === 'user' ? 'user' : 'assistant',
+        content: msg.content,
+      })),
+    ];
 
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          systemInstruction: {
-            parts: [{ text: SYSTEM_PROMPT }],
-          },
-          contents,
-          generationConfig: {
-            temperature: 0.8,
-            maxOutputTokens: 1024,
-            topP: 0.95,
-          },
-        }),
-      }
-    );
+    const response = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+      },
+      body: JSON.stringify({
+        model: 'gpt-4o-mini',
+        messages: openaiMessages,
+        temperature: 0.8,
+        max_tokens: 1024,
+      }),
+    });
 
     if (!response.ok) {
       const errorData = await response.text();
-      console.error('Gemini API error:', errorData);
-      return res.status(response.status).json({ error: `Gemini API Error: ${response.status}` });
+      console.error('OpenAI API error:', errorData);
+      return res.status(response.status).json({ error: `OpenAI API Error: ${response.status}` });
     }
 
     const data = await response.json();
     const aiText =
-      data?.candidates?.[0]?.content?.parts?.[0]?.text ||
+      data?.choices?.[0]?.message?.content ||
       'I apologize, I was unable to process that request. Please try again.';
 
     return res.status(200).json({ content: aiText });
