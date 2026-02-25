@@ -135,8 +135,9 @@
           right: 0;
           left: 0;
           width: 100%;
-          height: 90dvh;
-          height: 90vh; /* fallback */
+          height: 90%;
+          max-height: 90dvh;
+          max-height: 90vh; /* fallback */
           border-radius: 24px 24px 0 0;
           border-bottom: none;
           transform: translateY(100%);
@@ -567,28 +568,30 @@
   function setupKeyboardHandling() {
     if (!window.visualViewport) return;
 
+    var initialVVHeight = window.visualViewport.height;
+
     window.visualViewport.addEventListener('resize', function () {
-      if (!isOpen) return;
+      if (!isOpen || window.innerWidth > 640) return;
       var panel = document.getElementById('stChatPanel');
       if (!panel) return;
 
-      // On mobile, when keyboard opens, adjust panel height
-      if (window.innerWidth <= 640) {
-        var vvh = window.visualViewport.height;
-        panel.style.height = vvh + 'px';
+      var currentVVH = window.visualViewport.height;
+      var keyboardOpen = currentVVH < initialVVHeight - 50;
 
-        // Scroll messages to bottom
-        var msgs = document.getElementById('stChatMessages');
-        if (msgs) msgs.scrollTop = msgs.scrollHeight;
+      if (keyboardOpen) {
+        // Keyboard is open — shrink panel to fit
+        panel.style.height = currentVVH + 'px';
+        panel.style.maxHeight = currentVVH + 'px';
+      } else {
+        // Keyboard closed — reset to CSS defaults
+        panel.style.height = '';
+        panel.style.maxHeight = '';
       }
-    });
 
-    window.visualViewport.addEventListener('scroll', function () {
-      if (!isOpen || window.innerWidth > 640) return;
-      // Keep panel anchored to visual viewport
-      var panel = document.getElementById('stChatPanel');
-      if (panel) {
-        panel.style.bottom = '0px';
+      // Scroll messages to bottom
+      var msgs = document.getElementById('stChatMessages');
+      if (msgs) {
+        setTimeout(function () { msgs.scrollTop = msgs.scrollHeight; }, 100);
       }
     });
   }
