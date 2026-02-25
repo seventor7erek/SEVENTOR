@@ -46,10 +46,10 @@ export default async function handler(req, res) {
   }
 
   try {
-    const apiKey = process.env.XAI_API_KEY;
+    const apiKey = process.env.GROQ_API_KEY;
     if (!apiKey) {
-      console.error('XAI_API_KEY is not set in environment variables');
-      return res.status(500).json({ error: 'API key not configured. Please set XAI_API_KEY in Vercel Environment Variables.' });
+      console.error('GROQ_API_KEY is not set in environment variables');
+      return res.status(500).json({ error: 'API key not configured. Please set GROQ_API_KEY in Vercel Environment Variables.' });
     }
 
     const { messages } = req.body;
@@ -58,7 +58,7 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Invalid request body.' });
     }
 
-    const grokMessages = [
+    const groqMessages = [
       { role: 'system', content: SYSTEM_PROMPT },
       ...messages.map((msg) => ({
         role: msg.role === 'user' ? 'user' : 'assistant',
@@ -66,15 +66,15 @@ export default async function handler(req, res) {
       })),
     ];
 
-    const response = await fetch('https://api.x.ai/v1/chat/completions', {
+    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: 'grok-3-mini',
-        messages: grokMessages,
+        model: 'llama-3.3-70b-versatile',
+        messages: groqMessages,
         temperature: 0.8,
         max_tokens: 1024,
       }),
@@ -82,8 +82,8 @@ export default async function handler(req, res) {
 
     if (!response.ok) {
       const errorData = await response.text();
-      console.error('Grok API error status:', response.status);
-      console.error('Grok API error body:', errorData);
+      console.error('Groq API error status:', response.status);
+      console.error('Groq API error body:', errorData);
       return res.status(response.status).json({ error: `API Error: ${response.status}`, details: errorData });
     }
 
