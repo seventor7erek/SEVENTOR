@@ -554,22 +554,31 @@
         body: JSON.stringify({ messages: messages }),
       });
 
-      if (!response.ok) {
-        const data = await response.json().catch(function () { return {}; });
-        throw new Error(data.error || 'Error: ' + response.status);
+      var data;
+      try {
+        data = await response.json();
+      } catch (parseErr) {
+        throw new Error('Failed to parse server response. The server may be misconfigured.');
       }
 
-      const data = await response.json();
-      messages.push({ role: 'assistant', content: data.content });
+      if (!response.ok) {
+        throw new Error(data.error || 'Server error: ' + response.status);
+      }
+
+      if (data.content) {
+        messages.push({ role: 'assistant', content: data.content });
+      } else {
+        throw new Error('Empty response from AI.');
+      }
     } catch (err) {
       var errorMsg = err.message || 'Connection interrupted.';
       showError(errorMsg);
-      messages.push({
-        role: 'assistant',
-        content: getLang() === 'ar'
-          ? 'أعتذر عن هذا الانقطاع. يبدو أنه حدثت مشكلة في الاتصال. يرجى المحاولة مرة أخرى قريباً.'
-          : 'I apologize for the interruption. It seems there was a connection issue. Please try again shortly.',
-      });
+      // Remove the user message if it failed so they can retry
+      if (messages.length > 0 && messages[messages.length - 1].role === 'user') {
+        var failedMsg = messages.pop();
+        // Restore it in the input so user can retry
+        document.getElementById('stChatInput').value = failedMsg.content;
+      }
     } finally {
       isLoading = false;
       setInputDisabled(false);
